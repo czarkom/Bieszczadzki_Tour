@@ -1,0 +1,13 @@
+\contentsline {section}{\numberline {1}Wst\IeC {\k e}p}{2}% 
+\contentsline {subsection}{\numberline {1.1}Cel dokumentu}{2}% 
+\contentsline {subsection}{\numberline {1.2}Cel projektu}{2}% 
+\contentsline {subsection}{\numberline {1.3}U\IeC {\.z}ytkownik docelowy}{2}% 
+\contentsline {section}{\numberline {2}Uruchomienie programu}{3}% 
+\contentsline {section}{\numberline {3}Dane wej\IeC {\'s}ciowe}{3}% 
+\contentsline {subsection}{\numberline {3.1}Plik konfiguracyjny}{4}% 
+\contentsline {subsection}{\numberline {3.2}ID\_miejsca}{4}% 
+\contentsline {subsection}{\numberline {3.3}Lista \IeC {\.z}ycze\IeC {\'n}}{5}% 
+\contentsline {section}{\numberline {4}Dane wyj\IeC {\'s}ciowe}{6}% 
+\contentsline {section}{\numberline {5}Scenariusz uruchomienia}{6}% 
+\contentsline {section}{\numberline {6}Opis sytuacji wyj\IeC {\k a}tkowych}{7}% 
+\contentsline {section}{\numberline {7}Testowanie}{7}% 

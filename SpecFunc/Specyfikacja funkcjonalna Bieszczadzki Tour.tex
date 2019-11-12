@@ -1,0 +1,91 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage{indentfirst} 
+
+\usepackage{fancyhdr}
+\usepackage{graphicx} 
+\usepackage[obeyspaces]{url}
+\usepackage{lastpage}
+
+\graphicspath{ {./resources/} }
+
+\pagestyle{fancy}
+\fancyhf[HR]{}
+\linespread{1.5}
+\setlength\headheight{30pt}
+\cfoot{Strona \thepage \hspace{1pt} z \pageref{LastPage}}
+\renewcommand\contentsname{}
+\chead{Bieszczadzki Tour -- specyfikacja funkcjonalna -- Maciej Czarkowski}
+
+\begin{document}
+
+\begin{titlepage}
+\vspace*{\fill}
+\begin{center}
+{\fontsize{50}{0.1}\selectfont Bieszczadzki Tour}
+\huge Specyfikacja funkcjonalna
+\end{center}
+\vspace*{\fill}
+\begin{center}
+Maciej Czarkowski, 07.11.2019
+\end{center}
+\end{titlepage}
+\clearpage
+\hspace{1cm}
+\begin{center}
+\LARGE\textbf{Spis treści}
+\end{center}
+\tableofcontents
+\clearpage
+\section{Wstęp}
+\subsection{Cel dokumentu}
+Celem niniejszego dokumentu, będącego specyfikacją funkcjonalną projektu \textsl{,,Bieszczadzki Tour''}, realizowanego na potrzeby zadania projektowego z przedmiotu Algorytmy i Struktury Danych, jest wprowadzenie użytkownika końcowego w jego problematykę i możliwości. Ma on za zadanie również pełne poinstruowanie użytkownika, w jaki sposób odpowiednio i bezproblemowo korzystać z omawianego programu.
+\subsection{Cel projektu}
+Celem projektu jest pomoc zakłopotanym studentom w odnalezieniu optymalnej trasy pomiędzy wybranymi przez nich punktami turystycznymi na~mapie Bieszczad. Stworzony program ma umożliwiać wygenerowanie trasy przez wszystkie wybrane przez studentów miejsca w możliwie najkrótszym czasie, z uwzględnieniem kosztów podróży.
+\subsection{Użytkownik docelowy}
+Użytkownikiem końcowym programu \textsl{,,Bieszczadzki Tour''} jest grupa studentów wybierających się na wyprawę po Bieszczadach, którzy z wykorzystaniem programu mają możliwość zoptymalizowania swojej wędrówki. Użytkownikiem końcowym jest również mgr. Inż. Paweł Zawadzki, prowadzący zajęcia z Algorytmów i Struktur Danych w semestrze 2019Z, który to na~podstawie działania programu dokona jego oceny.
+\newpage
+\section{Uruchomienie programu}
+W celu uruchomienia programu, na lokalnym komputerze należy otworzyć wiersz poleceń, a następnie przejść do folderu z projektem, podając ścieżkę do niego w pokazany poniżej sposób, z wykorzystaniem komendy \textsl{cd}.\smallskip\\
+\smallskip
+\path{cd C:\path\to\project\directory}\\
+\indent Po przejściu do powyższego folderu należy uruchomić program, podając jednocześnie argumenty do niego, zgodnie z poniższym schematem.\smallskip\\
+{\scriptsize{\path{java -jar dist\bieszczadzkitour.jar path\to\data.txt ID_miejsca path\to\wishlist.txt}}\smallskip\\}
+\indent W powyższej komendzie \path{path\to\data.txt} to ścieżka do pliku, w którym użytkownik powinien umieścić dane wejściowe dla programu (nazywanego dalej plikiem konfiguracyjnym), \path{ID_miejsca} to identyfikator miejsca rozpoczęcia podróży, zgodny z informacjami zawartymi w pliku konfiguracyjnym, a~opcjonalnie dodajemy \path{path\to\wishlist.txt}, czyli ścieżkę do~pliku, w~którym użytkownik określa miejsca, które chce odwiedzić (nazywanego dalej listą życzeń). Formatowanie danych wejściowych dla programu jest omówione szczegółowo w punkcie trzecim niniejszego dokumentu.
+\section{Dane wejściowe}
+Danymi wejściowymi dla programu są wspomniane w poprzednim punkcie argumenty, które podajemy przy uruchamianiu. Pliki, będące argumentami do~programu, powinny być plikami tekstowymi, które muszą posiadać określone formatowanie zawartości, aby program mógł działać w pełni poprawnie. W poniższych podsekcjach bardziej szczegółowo omówiono te elementy.\\
+\newpage
+\subsection{Plik konfiguracyjny}
+W tym pliku tekstowym (należy wykorzystać rozszerzenie \path{.txt}) użytkownik powinien umieścić wszelkie informacje (unikatowy numer ID, nazwę oraz opis miejsca) na temat punktów, które rozpatrujemy podczas działania programu oraz informacje na temat czasów (w obu kierunkach) i cen przejść pomiędzy poszczególnymi punktami. Plik powinien być zgodny z poniższym schematem.
+\begin{figure}[h!]
+\includegraphics[scale=0.5]{data.jpg}
+\caption{Poprawne formatowanie pliku z danymi wejściowymi}
+\end{figure}
+\subsection{ID\_miejsca}
+Jest to ciąg znaków, zgodny z analogicznym polem w pliku konfiguracyjnym, który powinien jednoznacznie identyfikować i określać miejsce rozpoczęcia i jednocześnie zakończenia podróży.
+\newpage
+\subsection{Lista życzeń}
+W tym pliku tekstowym (ponownie należy wykorzystać rozszerzenie \path{.txt}) użytkownik określa jednoznacznie, za pomocą pola \path{ID_miejsca}, miejsca, które chce odwiedzić. Formatowanie pliku powinno być zgodne z poniższym schematem.\\
+\begin{figure}[h!]
+\includegraphics[scale = 1]{wishlist.jpg}
+\caption{Poprawne formatowanie pliku z listą życzeń}
+\end{figure}
+\newpage
+\section{Dane wyjściowe}
+W wyniku działania programu tworzony jest tekstowy plik wynikowy o~nazwie \path{result.txt}, w którym przedstawiona jest pełna, najkrótsza i możliwie najtańsza trasa z wyliczonym czasem oraz kosztem wędrówki. Plik tworzony będzie w folderze projektu, w podfolderze output, a jego formatowanie będzie zgodne z poniższym schematem.\\
+\begin{figure}[h!]
+\includegraphics[scale = 1]{result.jpg}
+\caption{Formatowanie pliku wynikowego}
+\end{figure}
+\\
+\section{Scenariusz uruchomienia}
+Po uruchomieniu programu zgodnie z punktem 2 niniejszej specyfikacji, w~przypadku poprawnego formatowania plików, działanie programu zakończy się, a w podfolderze \path{.\output} w folderze projektowym ukaże się nowy plik wynikowy \path{result.txt}.
+\section{Opis sytuacji wyjątkowych}
+W przypadku podania nieprawidłowych argumentów przy uruchamianiu programu, w powłoce tekstowej, w której uruchamiany jest program, wyświetlony zostanie stosowny komunikat o niepoprawnym sformatowaniu argumentów z informacją, w którym argumencie wystąpił błąd. Dzięki tej informacji, użytkownik może poprawić wadliwy argument i ponownie przystąpić do uruchomienia programu.
+\section{Testowanie}
+Program będzie testowany poprzez podawanie jako argumenty różnych zestawów danych -- zarówno poprawnych, jak i niepoprawnych. W przypadku podania danych o niepoprawnym formatowaniu sprawdzana będzie funkcjonalność w jaki sposób program informuje nas o błędach w argumentach -- czy komunikat o błędzie jest wyświetlony prawidłowo oraz czy jednoznacznie informuje nas jaki błąd wystąpił.\\
+\indent W przypadku testowania poprawnego działania programu, przygotowane zostaną zestawy danych wejściowych o poprawnym formatowaniu oraz o~wiadomym poprawnym wyniku działania programu. Po wykonaniu programu, dane z pliku wynikowego zostaną porównane z wynikiem oczekiwanym, co pozwoli nam stwierdzić czy program zadziałał prawidłowo.
+\end{document}
+
