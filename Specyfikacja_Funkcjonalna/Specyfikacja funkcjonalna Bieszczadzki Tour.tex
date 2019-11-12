@@ -45,7 +45,7 @@ Celem niniejszego dokumentu, będącego specyfikacją funkcjonalną projektu \te
 \subsection{Cel projektu}
 Celem projektu jest pomoc zakłopotanym studentom w odnalezieniu optymalnej trasy pomiędzy wybranymi przez nich punktami turystycznymi na~mapie Bieszczad. Stworzony program ma umożliwiać wygenerowanie trasy przez wszystkie wybrane przez studentów miejsca w możliwie najkrótszym czasie, z uwzględnieniem kosztów podróży.
 \subsection{Użytkownik docelowy}
-Użytkownikiem końcowym programu \textsl{,,Bieszczadzki Tour''} jest grupa studentów wybierających się na wyprawę po Bieszczadach, którzy z wykorzystaniem programu mają możliwość zoptymalizowania swojej wędrówki. Użytkownikiem końcowym jest również mgr. Inż. Paweł Zawadzki, prowadzący zajęcia z Algorytmów i Struktur Danych w semestrze 2019Z, który to na~podstawie działania programu dokona jego oceny.
+Użytkownikiem końcowym programu \textsl{,,Bieszczadzki Tour''} jest grupa studentów wybierających się na wyprawę po Bieszczadach, którzy z wykorzystaniem programu mają możliwość zoptymalizowania swojej wędrówki. Użytkownikiem końcowym jest również mgr inż. Paweł Zawadzki, prowadzący zajęcia z Algorytmów i Struktur Danych w semestrze 2019Z, który to na~podstawie działania programu dokona jego oceny.
 \newpage
 \section{Uruchomienie programu}
 W celu uruchomienia programu, na lokalnym komputerze należy otworzyć wiersz poleceń, a następnie przejść do folderu z projektem, podając ścieżkę do niego w pokazany poniżej sposób, z wykorzystaniem komendy \textsl{cd}.\smallskip\\
@@ -79,14 +79,25 @@ W wyniku działania programu tworzony jest tekstowy plik wynikowy o~nazwie \path
 \includegraphics[scale = 1]{result.jpg}
 \caption{Formatowanie pliku wynikowego}
 \end{figure}
-\\
 \section{Scenariusz uruchomienia}
-Po uruchomieniu programu zgodnie z punktem 2 niniejszej specyfikacji, w~przypadku poprawnego formatowania plików, działanie programu zakończy się, a w podfolderze \path{.\output} w folderze projektowym ukaże się nowy plik wynikowy \path{result.txt}.
+Po uruchomieniu programu zgodnie z punktem 2 niniejszej specyfikacji, w~przypadku poprawnego formatowania plików, program nie wypisze żadnych komunikatów o błędach, działanie programu zakończy się bez wyświetlania dodatkowych informacji w konsoli, a w podfolderze \path{.\output} w folderze projektowym ukaże się nowy plik wynikowy \path{result.txt}.
 \section{Opis sytuacji wyjątkowych}
 W przypadku podania nieprawidłowych argumentów przy uruchamianiu programu, w powłoce tekstowej, w której uruchamiany jest program, wyświetlony zostanie stosowny komunikat o niepoprawnym sformatowaniu argumentów z informacją, w którym argumencie wystąpił błąd. Dzięki tej informacji, użytkownik może poprawić wadliwy argument i ponownie przystąpić do uruchomienia programu. Komunikat będzie zgodny, w zależności od zaistniałej sytuacji wyjątkowej, z jednym z poniżej podanych przykładów.
 \subsection{Błąd w pliku konfiguracyjnym}
+Jeśli plik konfiguracyjny będzie zawierał niepoprawnie sformatowane dane, w jakikolwiek sposób niezgodne z podanym w punkcie 3.1 schematem, bądź jeśli dane nie będą poprawne pod względem matematycznym (np. podany zostanie ujemny czas lub opłata za przejście), w konsoli zostanie wypisany poniższy komunikat.\\
+{\footnotesize{\path{Please review your configuration file, it seems to be an error in it!}}}
 \subsection{Błąd w ID\_miejsca}
-\subsection{Błąd w Liście Życzeń }
+Jeśli pole \path{ID_miejsca}, podane jako argument, będzie sformatowane nieprawidłowo lub jeśli nie będzie miało swojego odpowiednika w pliku konfiguracyjnym, wyświetlony zostanie poniższy komunikat.\\
+\path{You've passed ID_miejsca argument wrongly, please correct it.}
+\subsection{Błąd w Liście Życzeń}
+W przypadku gdy plik \path{wishlist.txt} będzie sformatowany niezgodnie z wymaganym schematem, bądź jeśli dane w nim zawarte nie będą zgodne z plikiem konfiguracyjnym (miejsce z listy życzeń nie istnieje na liście wszystkich naszych miejsc), konsola wyświetli poniższy komunikat.\\
+\path{Please review your wishlist, it seems to be an error in it!}
+\subsection{Brak pliku konfiguracyjnego}
+W przypadku braku argumentu będącego ścieżką do pliku konfiguracyjnego, zostanie wyświetlony poniższy komunikat.\\
+\path{Configuration file is missing!}
+\subsection{Brak argumentu ID\_miejsca}
+Kiedy nie zostanie podane \path{ID_miejsca}, ukazany zostanie poniższy komunikat.\\
+\path{ID_miejsca argument is missing!}
 \section{Testowanie}
 Program będzie testowany poprzez podawanie jako argumenty różnych zestawów danych -- zarówno poprawnych, jak i niepoprawnych. W przypadku podania danych o niepoprawnym formatowaniu sprawdzana będzie funkcjonalność w jaki sposób program informuje nas o błędach w argumentach -- czy komunikat o błędzie jest wyświetlony prawidłowo oraz czy jednoznacznie informuje nas jaki błąd wystąpił.\\
 \indent W przypadku testowania poprawnego działania programu, przygotowane zostaną zestawy danych wejściowych o poprawnym formatowaniu oraz o~wiadomym poprawnym wyniku działania programu. Po wykonaniu programu, dane z pliku wynikowego zostaną porównane z wynikiem oczekiwanym, co pozwoli nam stwierdzić czy program zadziałał prawidłowo.

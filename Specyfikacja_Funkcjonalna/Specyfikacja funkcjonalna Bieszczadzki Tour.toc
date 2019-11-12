@@ -12,5 +12,7 @@
 \contentsline {section}{\numberline {6}Opis sytuacji wyj\IeC {\k a}tkowych}{7}% 
 \contentsline {subsection}{\numberline {6.1}B\IeC {\l }\IeC {\k a}d w pliku konfiguracyjnym}{7}% 
 \contentsline {subsection}{\numberline {6.2}B\IeC {\l }\IeC {\k a}d w ID\_miejsca}{7}% 
-\contentsline {subsection}{\numberline {6.3}B\IeC {\l }\IeC {\k a}d w Li\IeC {\'s}cie \IeC {\.Z}ycze\IeC {\'n} }{7}% 
-\contentsline {section}{\numberline {7}Testowanie}{7}% 
+\contentsline {subsection}{\numberline {6.3}B\IeC {\l }\IeC {\k a}d w Li\IeC {\'s}cie \IeC {\.Z}ycze\IeC {\'n}}{7}% 
+\contentsline {subsection}{\numberline {6.4}Brak pliku konfiguracyjnego}{8}% 
+\contentsline {subsection}{\numberline {6.5}Brak argumentu ID\_miejsca}{8}% 
+\contentsline {section}{\numberline {7}Testowanie}{8}% 

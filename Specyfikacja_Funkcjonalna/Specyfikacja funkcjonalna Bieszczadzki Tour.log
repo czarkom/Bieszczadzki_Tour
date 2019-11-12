@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.3.31)  12 NOV 2019 14:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.3.31)  12 NOV 2019 15:28
 entering extended mode
 **"./Specyfikacja funkcjonalna Bieszczadzki Tour.tex"
 ("Specyfikacja funkcjonalna Bieszczadzki Tour.tex"
@@ -302,22 +302,22 @@ File: ./resources/result.jpg Graphic file (type jpg)
 <use ./resources/result.jpg>
 Package pdftex.def Info: ./resources/result.jpg  used on input line 79.
 (pdftex.def)             Requested size: 316.78271pt x 196.93524pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 77--83
-
- []
-
-[6 <./resources/result.jpg>] 
+ [6 <./resources/result.jpg>]
+LaTeX Font Info:    External font `plex10' loaded for size
+(Font)              <10> on input line 88.
+LaTeX Font Info:    External font `plex10' loaded for size
+(Font)              <7> on input line 88.
+ [7] 
 AED: lastpage setting LastPage
-[7] ("Specyfikacja funkcjonalna Bieszczadzki Tour.aux") ) 
+[8] ("Specyfikacja funkcjonalna Bieszczadzki Tour.aux") ) 
 Here is how much of TeX's memory you used:
- 1969 strings out of 492945
- 30641 string characters out of 3125808
+ 1984 strings out of 492945
+ 30801 string characters out of 3125808
  91821 words of memory out of 3000000
- 5822 multiletter control sequences out of 15000+200000
- 14396 words of font info for 40 fonts, out of 3000000 for 9000
+ 5831 multiletter control sequences out of 15000+200000
+ 17009 words of font info for 47 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,10n,43p,683b,225s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,10n,43p,683b,228s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Maciej/AppDa
 ta/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/pl/pltt.enc}{C:/Users/Maciej/AppDa
 ta/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/pl/plrm.enc}<C:/Users/Maciej/AppDa
@@ -325,13 +325,14 @@ ta/Local/Programs/MiKTeX 2.9/fonts/type1/public/pl/plbx12.pfb><C:/Users/Maciej/
 AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/pl/plr12.pfb><C:/Users/Mac
 iej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/pl/plr17.pfb><C:/Users
 /Maciej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/pl/plsl12.pfb><C:/
-Users/Maciej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/pl/pltt12.pfb
-><C:/Users/Maciej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/pl/pltt8
-.pfb>
-Output written on "Specyfikacja funkcjonalna Bieszczadzki Tour.pdf" (8 pages, 2
-50818 bytes).
+Users/Maciej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/pl/pltt10.pfb
+><C:/Users/Maciej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/pl/pltt1
+2.pfb><C:/Users/Maciej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/pl/
+pltt8.pfb>
+Output written on "Specyfikacja funkcjonalna Bieszczadzki Tour.pdf" (9 pages, 2
+62440 bytes).
 PDF statistics:
- 58 PDF objects out of 1000 (max. 8388607)
+ 65 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
