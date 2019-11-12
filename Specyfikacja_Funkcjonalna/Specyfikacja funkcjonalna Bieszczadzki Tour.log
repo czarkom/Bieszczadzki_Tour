@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.3.31)  12 NOV 2019 22:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.3.31)  12 NOV 2019 22:10
 entering extended mode
 **"./Specyfikacja funkcjonalna Bieszczadzki Tour.tex"
 ("Specyfikacja funkcjonalna Bieszczadzki Tour.tex"
@@ -262,9 +262,9 @@ d-na-le-zie-niu opty-
  []
 
 
-Overfull \hbox (1.79315pt too wide) in paragraph at lines 46--47
-\OT4/cmr/m/n/12 mal-nej tra-sy po-mi¦-dzy wy-bra-ny-mi przez nich punk-ta-mi tu
--ry-stycz-ny-mi na ma-
+Overfull \hbox (4.07785pt too wide) in paragraph at lines 46--47
+\OT4/cmr/m/n/12 mal-nej tra-sy, po-mi¦-dzy wy-bra-ny-mi przez nich punk-ta-mi t
+u-ry-stycz-ny-mi na ma-
  []
 
 [2
@@ -330,7 +330,7 @@ Users/Maciej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/pl/pltt10.pfb
 2.pfb><C:/Users/Maciej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/pl/
 pltt8.pfb>
 Output written on "Specyfikacja funkcjonalna Bieszczadzki Tour.pdf" (9 pages, 2
-62439 bytes).
+62448 bytes).
 PDF statistics:
  65 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
