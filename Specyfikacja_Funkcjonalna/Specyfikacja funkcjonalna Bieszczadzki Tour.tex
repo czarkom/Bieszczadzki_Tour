@@ -12,7 +12,7 @@
 \graphicspath{ {./resources/} }
 
 \pagestyle{fancy}
-\fancyhf[HR]{}
+\fancyhf[]{}
 \linespread{1.5}
 \setlength\headheight{30pt}
 \cfoot{Strona \thepage \hspace{1pt} z \pageref{LastPage}}
@@ -60,7 +60,7 @@ Danymi wejściowymi dla programu są wspomniane w poprzednim punkcie argumenty, 
 \subsection{Plik konfiguracyjny}
 W tym pliku tekstowym (należy wykorzystać rozszerzenie \path{.txt}) użytkownik powinien umieścić wszelkie informacje (unikatowy numer ID, nazwę oraz opis miejsca) na temat punktów, które rozpatrujemy podczas działania programu oraz informacje na temat czasów (w obu kierunkach) i cen przejść pomiędzy poszczególnymi punktami. Plik powinien być zgodny z poniższym schematem.
 \begin{figure}[h!]
-\includegraphics[scale=0.5]{data.jpg}
+\includegraphics[width = \linewidth]{data.jpg}
 \caption{Poprawne formatowanie pliku z danymi wejściowymi}
 \end{figure}
 \subsection{ID\_miejsca}
@@ -69,7 +69,7 @@ Jest to ciąg znaków, zgodny z analogicznym polem w pliku konfiguracyjnym, któ
 \subsection{Lista życzeń}
 W tym pliku tekstowym (ponownie należy wykorzystać rozszerzenie \path{.txt}) użytkownik określa jednoznacznie, za pomocą pola \path{ID_miejsca}, miejsca, które chce odwiedzić. Formatowanie pliku powinno być zgodne z poniższym schematem.\\
 \begin{figure}[h!]
-\includegraphics[scale = 1]{wishlist.jpg}
+\includegraphics[scale = 1.1]{wishlist.jpg}
 \caption{Poprawne formatowanie pliku z listą życzeń}
 \end{figure}
 \newpage
@@ -83,7 +83,10 @@ W wyniku działania programu tworzony jest tekstowy plik wynikowy o~nazwie \path
 \section{Scenariusz uruchomienia}
 Po uruchomieniu programu zgodnie z punktem 2 niniejszej specyfikacji, w~przypadku poprawnego formatowania plików, działanie programu zakończy się, a w podfolderze \path{.\output} w folderze projektowym ukaże się nowy plik wynikowy \path{result.txt}.
 \section{Opis sytuacji wyjątkowych}
-W przypadku podania nieprawidłowych argumentów przy uruchamianiu programu, w powłoce tekstowej, w której uruchamiany jest program, wyświetlony zostanie stosowny komunikat o niepoprawnym sformatowaniu argumentów z informacją, w którym argumencie wystąpił błąd. Dzięki tej informacji, użytkownik może poprawić wadliwy argument i ponownie przystąpić do uruchomienia programu.
+W przypadku podania nieprawidłowych argumentów przy uruchamianiu programu, w powłoce tekstowej, w której uruchamiany jest program, wyświetlony zostanie stosowny komunikat o niepoprawnym sformatowaniu argumentów z informacją, w którym argumencie wystąpił błąd. Dzięki tej informacji, użytkownik może poprawić wadliwy argument i ponownie przystąpić do uruchomienia programu. Komunikat będzie zgodny, w zależności od zaistniałej sytuacji wyjątkowej, z jednym z poniżej podanych przykładów.
+\subsection{Błąd w pliku konfiguracyjnym}
+\subsection{Błąd w ID\_miejsca}
+\subsection{Błąd w Liście Życzeń }
 \section{Testowanie}
 Program będzie testowany poprzez podawanie jako argumenty różnych zestawów danych -- zarówno poprawnych, jak i niepoprawnych. W przypadku podania danych o niepoprawnym formatowaniu sprawdzana będzie funkcjonalność w jaki sposób program informuje nas o błędach w argumentach -- czy komunikat o błędzie jest wyświetlony prawidłowo oraz czy jednoznacznie informuje nas jaki błąd wystąpił.\\
 \indent W przypadku testowania poprawnego działania programu, przygotowane zostaną zestawy danych wejściowych o poprawnym formatowaniu oraz o~wiadomym poprawnym wyniku działania programu. Po wykonaniu programu, dane z pliku wynikowego zostaną porównane z wynikiem oczekiwanym, co pozwoli nam stwierdzić czy program zadziałał prawidłowo.
