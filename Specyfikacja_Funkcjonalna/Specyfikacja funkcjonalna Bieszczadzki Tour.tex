@@ -14,7 +14,7 @@
 \pagestyle{fancy}
 \fancyhf[]{}
 \linespread{1.5}
-\setlength\headheight{30pt}
+\setlength\headheight{14.5pt}
 \cfoot{Strona \thepage \hspace{1pt} z \pageref{LastPage}}
 \renewcommand\contentsname{}
 \chead{Bieszczadzki Tour -- specyfikacja funkcjonalna -- Maciej Czarkowski}
@@ -29,7 +29,7 @@
 \end{center}
 \vspace*{\fill}
 \begin{center}
-Maciej Czarkowski, 07.11.2019
+Maciej Czarkowski, 12.11.2019
 \end{center}
 \end{titlepage}
 \clearpage
@@ -90,7 +90,7 @@ Jeśli plik konfiguracyjny będzie zawierał niepoprawnie sformatowane dane, w j
 Jeśli pole \path{ID_miejsca}, podane jako argument, będzie sformatowane nieprawidłowo lub jeśli nie będzie miało swojego odpowiednika w pliku konfiguracyjnym, wyświetlony zostanie poniższy komunikat.\\
 \path{You've passed ID_miejsca argument wrongly, please correct it.}
 \subsection{Błąd w Liście Życzeń}
-W przypadku gdy plik \path{wishlist.txt} będzie sformatowany niezgodnie z wymaganym schematem, bądź jeśli dane w nim zawarte nie będą zgodne z plikiem konfiguracyjnym (miejsce z listy życzeń nie istnieje na liście wszystkich naszych miejsc), konsola wyświetli poniższy komunikat.\\
+W przypadku gdy plik \path{wishlist.txt} będzie sformatowany niezgodnie z~wymaganym schematem, bądź jeśli dane w nim zawarte nie będą zgodne z~plikiem konfiguracyjnym (miejsce z listy życzeń nie istnieje na liście wszystkich naszych miejsc), konsola wyświetli poniższy komunikat.\\
 \path{Please review your wishlist, it seems to be an error in it!}
 \subsection{Brak pliku konfiguracyjnego}
 W przypadku braku argumentu będącego ścieżką do pliku konfiguracyjnego, zostanie wyświetlony poniższy komunikat.\\
@@ -99,7 +99,7 @@ W przypadku braku argumentu będącego ścieżką do pliku konfiguracyjnego, zos
 Kiedy nie zostanie podane \path{ID_miejsca}, ukazany zostanie poniższy komunikat.\\
 \path{ID_miejsca argument is missing!}
 \section{Testowanie}
-Program będzie testowany poprzez podawanie jako argumenty różnych zestawów danych -- zarówno poprawnych, jak i niepoprawnych. W przypadku podania danych o niepoprawnym formatowaniu sprawdzana będzie funkcjonalność w jaki sposób program informuje nas o błędach w argumentach -- czy komunikat o błędzie jest wyświetlony prawidłowo oraz czy jednoznacznie informuje nas jaki błąd wystąpił.\\
-\indent W przypadku testowania poprawnego działania programu, przygotowane zostaną zestawy danych wejściowych o poprawnym formatowaniu oraz o~wiadomym poprawnym wyniku działania programu. Po wykonaniu programu, dane z pliku wynikowego zostaną porównane z wynikiem oczekiwanym, co pozwoli nam stwierdzić czy program zadziałał prawidłowo.
+Program będzie testowany poprzez podawanie jako argumenty różnych zestawów danych -- zarówno poprawnych, jak i niepoprawnych. W przypadku podania danych o niepoprawnym formatowaniu sprawdzana będzie funkcjonalność, w jaki sposób program informuje nas o błędach w argumentach -- czy komunikat o błędzie jest wyświetlony prawidłowo oraz czy jednoznacznie informuje nas jaki błąd wystąpił.\\
+\indent W przypadku testowania poprawnego działania programu przygotowane zostaną zestawy danych wejściowych o poprawnym formatowaniu oraz o~wiadomym poprawnym wyniku działania programu. Po wykonaniu programu, dane z pliku wynikowego zostaną porównane z wynikiem oczekiwanym, co pozwoli nam stwierdzić czy program zadziałał prawidłowo.
 \end{document}
 
