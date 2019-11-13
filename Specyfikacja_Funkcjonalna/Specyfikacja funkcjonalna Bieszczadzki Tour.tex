@@ -48,14 +48,14 @@ Celem projektu jest pomoc zakłopotanym studentom w odnalezieniu optymalnej tras
 Użytkownikiem końcowym programu \textsl{,,Bieszczadzki Tour''} jest grupa studentów wybierających się na wyprawę po Bieszczadach, którzy z wykorzystaniem programu mają możliwość zoptymalizowania swojej wędrówki. Użytkownikiem końcowym jest również mgr inż. Paweł Zawadzki, prowadzący zajęcia z Algorytmów i Struktur Danych w semestrze 2019Z, który to na~podstawie działania programu dokona jego oceny.
 \newpage
 \section{Uruchomienie programu}
-W celu uruchomienia programu, na lokalnym komputerze należy otworzyć wiersz poleceń, a następnie przejść do folderu z projektem, podając ścieżkę do niego w pokazany poniżej sposób, z wykorzystaniem komendy \textsl{cd}.\smallskip\\
+Aby uruchomienie programu było możliwe, na swoim urządzeniu należy mieć zaistalowaną maszynę wirtualną języka Java (Java Virtual Machine). W celu uruchomienia programu, na lokalnym komputerze należy otworzyć wiersz poleceń, a następnie przejść do folderu z projektem, podając ścieżkę do niego w pokazany poniżej sposób, z wykorzystaniem komendy \textsl{cd}.\smallskip\\
 \smallskip
 \path{cd C:\path\to\project\directory}\\
 \indent Po przejściu do powyższego folderu należy uruchomić program, podając jednocześnie argumenty do niego, zgodnie z poniższym schematem.\smallskip\\
 {\scriptsize{\path{java -jar dist\bieszczadzkitour.jar path\to\data.txt ID_miejsca path\to\wishlist.txt}}\smallskip\\}
 \indent W powyższej komendzie \path{path\to\data.txt} to ścieżka do pliku, w którym użytkownik powinien umieścić dane wejściowe dla programu (nazywanego dalej plikiem konfiguracyjnym), \path{ID_miejsca} to identyfikator miejsca rozpoczęcia podróży, zgodny z informacjami zawartymi w pliku konfiguracyjnym, a~opcjonalnie dodajemy \path{path\to\wishlist.txt}, czyli ścieżkę do~pliku, w~którym użytkownik określa miejsca, które chce odwiedzić (nazywanego dalej listą życzeń). Formatowanie danych wejściowych dla programu jest omówione szczegółowo w punkcie trzecim niniejszego dokumentu.
 \section{Dane wejściowe}
-Danymi wejściowymi dla programu są wspomniane w poprzednim punkcie argumenty, które podajemy przy uruchamianiu. Pliki, będące argumentami do~programu, powinny być plikami tekstowymi, które muszą posiadać określone formatowanie zawartości, aby program mógł działać w pełni poprawnie. W poniższych podsekcjach bardziej szczegółowo omówiono te elementy.\\
+Danymi wejściowymi dla programu są wspomniane w poprzednim punkcie argumenty, które podajemy przy uruchamianiu. Pliki, będące argumentami do~programu, powinny być plikami tekstowymi, które muszą posiadać określone formatowanie zawartości, aby program mógł działać w pełni poprawnie. W poniższych podsekcjach bardziej szczegółowo omówiono te elementy.
 \newpage
 \subsection{Plik konfiguracyjny}
 W tym pliku tekstowym (należy wykorzystać rozszerzenie \path{.txt}) użytkownik powinien umieścić wszelkie informacje (unikatowy numer ID, nazwę oraz opis miejsca) na temat punktów, które rozpatrujemy podczas działania programu, oraz informacje na temat czasów (w obu kierunkach) i cen przejść pomiędzy poszczególnymi punktami. Plik powinien być zgodny z poniższym schematem.
