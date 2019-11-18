@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.3.31)  18 NOV 2019 17:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.3.31)  18 NOV 2019 23:40
 entering extended mode
 **./Specyfikacja_implementacyjna_Bieszczadzki_Tour.tex
 (Specyfikacja_implementacyjna_Bieszczadzki_Tour.tex
@@ -225,7 +225,31 @@ Package lastpage Info: Please have a look at the pageslts package at
  [1
 
 {C:/Users/Maciej/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-(Specyfikacja_implementacyjna_Bieszczadzki_Tour.toc)
+(Specyfikacja_implementacyjna_Bieszczadzki_Tour.toc
+LaTeX Font Info:    Try loading font information for OML+plm on input line 4.
+
+("C:\Users\Maciej\AppData\Local\Programs\MiKTeX 2.9\tex/latex/polski\omlplm.fd"
+File: omlplm.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
+)
+LaTeX Font Info:    Try loading font information for OMS+plsy on input line 4.
+
+("C:\Users\Maciej\AppData\Local\Programs\MiKTeX 2.9\tex/latex/polski\omsplsy.fd
+"
+File: omsplsy.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
+)
+LaTeX Font Info:    Try loading font information for OMX+plex on input line 4.
+
+("C:\Users\Maciej\AppData\Local\Programs\MiKTeX 2.9\tex/latex/polski\omxplex.fd
+"
+File: omxplex.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
+)
+LaTeX Font Info:    External font `plex10' loaded for size
+(Font)              <12> on input line 4.
+LaTeX Font Info:    External font `plex10' loaded for size
+(Font)              <8> on input line 4.
+LaTeX Font Info:    External font `plex10' loaded for size
+(Font)              <6> on input line 4.
+)
 \tf@toc=\write3
 \openout3 = `Specyfikacja_implementacyjna_Bieszczadzki_Tour.toc'.
 
@@ -242,29 +266,56 @@ Underfull \hbox (badness 10000) in paragraph at lines 43--44
 
  []
 
-
-AED: lastpage setting LastPage
 [2
 
-] [3] (Specyfikacja_implementacyjna_Bieszczadzki_Tour.aux) ) 
+]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 53.
+ ("C:\Users\Maciej\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\omscmr.fd"
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 53.
+LaTeX Font Info:    Try loading font information for OT4+cmtt on input line 53.
+
+
+("C:\Users\Maciej\AppData\Local\Programs\MiKTeX 2.9\tex/latex/polski\ot4cmtt.fd
+"
+File: ot4cmtt.fd 2008/02/24 v1.2.1 Font defs for fonts PL (MW)
+) [3] [4]
+<./resources/ClassDiagram.jpg, id=23, 907.59074pt x 451.08525pt>
+File: ./resources/ClassDiagram.jpg Graphic file (type jpg)
+<use ./resources/ClassDiagram.jpg>
+Package pdftex.def Info: ./resources/ClassDiagram.jpg  used on input line 76.
+(pdftex.def)             Requested size: 390.0pt x 193.83897pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[5] [6 <./resources/ClassDiagram.jpg>] 
+AED: lastpage setting LastPage
+[7] (Specyfikacja_implementacyjna_Bieszczadzki_Tour.aux) ) 
 Here is how much of TeX's memory you used:
- 1879 strings out of 492945
- 28807 string characters out of 3125808
+ 1968 strings out of 492945
+ 30743 string characters out of 3125808
  91826 words of memory out of 3000000
- 5763 multiletter control sequences out of 15000+200000
- 8478 words of font info for 24 fonts, out of 3000000 for 9000
+ 5824 multiletter control sequences out of 15000+200000
+ 13225 words of font info for 37 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,10n,43p,874b,195s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/Maciej/Ap
-pData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/pl/plrm.enc}<C:/Users/Maciej/Ap
-pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/pl/plbx12.pfb><C:/Users/Maci
-ej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/pl/plr12.pfb><C:/Users/
-Maciej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/pl/plr17.pfb><C:/Us
-ers/Maciej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/pl/plsl12.pfb>
-Output written on Specyfikacja_implementacyjna_Bieszczadzki_Tour.pdf (4 pages, 
-50697 bytes).
+ 41i,10n,43p,956b,227s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/Maciej/AppD
+ata/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/pl/pltt.enc}{C:/Users/Maciej/AppD
+ata/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/pl/plrm.enc}<C:/Users/Maciej/AppD
+ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Use
+rs/Maciej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/pl/plbx12.pfb><C
+:/Users/Maciej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/pl/plr12.pf
+b><C:/Users/Maciej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/pl/plr1
+7.pfb><C:/Users/Maciej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/pl/
+plsl12.pfb><C:/Users/Maciej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publi
+c/pl/pltt12.pfb>
+Output written on Specyfikacja_implementacyjna_Bieszczadzki_Tour.pdf (8 pages, 
+246376 bytes).
 PDF statistics:
- 32 PDF objects out of 1000 (max. 8388607)
+ 56 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

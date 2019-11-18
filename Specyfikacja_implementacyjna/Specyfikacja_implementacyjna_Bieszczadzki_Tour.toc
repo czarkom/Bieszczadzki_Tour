@@ -1,6 +1,15 @@
 \contentsline {section}{\numberline {1}Wst\IeC {\k e}p}{2}% 
 \contentsline {section}{\numberline {2}\IeC {\'S}rodowisko deweloperskie}{2}% 
 \contentsline {section}{\numberline {3}Zasady wersjonowania}{3}% 
-\contentsline {section}{\numberline {4}Diagram klas}{3}% 
-\contentsline {section}{\numberline {5}Istotne struktury danych w programie}{3}% 
-\contentsline {section}{\numberline {6}Wykorzystane algorytmy}{3}% 
+\contentsline {subsection}{\numberline {3.1}Wsp\IeC {\'o}\IeC {\l }praca z systemem kontroli wersji}{3}% 
+\contentsline {subsection}{\numberline {3.2}Schemat wiadomo\IeC {\'s}ci}{3}% 
+\contentsline {section}{\numberline {4}Diagram klas i struktura programu}{4}% 
+\contentsline {subsection}{\numberline {4.1}DataReader}{4}% 
+\contentsline {subsection}{\numberline {4.2}Map}{4}% 
+\contentsline {subsection}{\numberline {4.3}Place}{4}% 
+\contentsline {subsection}{\numberline {4.4}MainAlgorithm}{5}% 
+\contentsline {subsection}{\numberline {4.5}DijkstraAlgorithm}{5}% 
+\contentsline {subsection}{\numberline {4.6}DataWriter}{5}% 
+\contentsline {section}{\numberline {5}Rozwi\IeC {\k a}zywany problem}{5}% 
+\contentsline {section}{\numberline {6}Wykorzystane algorytmy}{6}% 
+\contentsline {section}{\numberline {7}Istotne struktury danych}{7}% 
