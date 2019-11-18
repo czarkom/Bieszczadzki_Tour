@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.3.31)  18 NOV 2019 23:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.3.31)  18 NOV 2019 23:55
 entering extended mode
 **./Specyfikacja_implementacyjna_Bieszczadzki_Tour.tex
 (Specyfikacja_implementacyjna_Bieszczadzki_Tour.tex
@@ -301,21 +301,24 @@ Here is how much of TeX's memory you used:
  5824 multiletter control sequences out of 15000+200000
  13225 words of font info for 37 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,10n,43p,956b,227s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,10n,43p,1047b,227s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/Maciej/AppD
-ata/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/pl/pltt.enc}{C:/Users/Maciej/AppD
-ata/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/pl/plrm.enc}<C:/Users/Maciej/AppD
+ata/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/pl/plrm.enc}{C:/Users/Maciej/AppD
+ata/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/pl/plmi.enc}{C:/Users/Maciej/AppD
+ata/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/pl/pltt.enc}<C:/Users/Maciej/AppD
 ata/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Use
 rs/Maciej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/pl/plbx12.pfb><C
-:/Users/Maciej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/pl/plr12.pf
-b><C:/Users/Maciej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/pl/plr1
-7.pfb><C:/Users/Maciej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/pl/
-plsl12.pfb><C:/Users/Maciej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publi
-c/pl/pltt12.pfb>
+:/Users/Maciej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/pl/plmi12.p
+fb><C:/Users/Maciej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/pl/plr
+12.pfb><C:/Users/Maciej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/pl
+/plr17.pfb><C:/Users/Maciej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publi
+c/pl/plr8.pfb><C:/Users/Maciej/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
+blic/pl/plsl12.pfb><C:/Users/Maciej/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
+e1/public/pl/pltt12.pfb>
 Output written on Specyfikacja_implementacyjna_Bieszczadzki_Tour.pdf (8 pages, 
-246376 bytes).
+252054 bytes).
 PDF statistics:
- 56 PDF objects out of 1000 (max. 8388607)
+ 65 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
