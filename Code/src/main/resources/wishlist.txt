@@ -1,0 +1,6 @@
+### Wybrane miejsca podróży
+Lp. | ID_miejsca |
+1. | A |
+2. | B |
+3. | E |
+4. | C |
