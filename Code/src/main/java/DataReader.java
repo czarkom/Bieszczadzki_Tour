@@ -13,12 +13,13 @@ public class DataReader {
     private String currentLine;
     private int placesCounter = 0;
 
-    private static final int NO_CONNECTION = -1;
+    private static final int NO_CONNECTION = 99999;
 
     private BufferedReader reader1;
     private BufferedReader reader2;
 
     private HashMap<String, Place> placesMap = new HashMap<>();
+    private HashMap<Integer, Place> placesMapForWriting = new HashMap<>();
 
     private int[][] timeMatrix;
 
@@ -130,6 +131,7 @@ public class DataReader {
         String description = firstSplit[3].trim();
         place.setTypeOfPlace(description);
         placesMap.put(id, place );
+        placesMapForWriting.put(placeNumericId, place);
         placesCounter++;
 
     }
@@ -169,18 +171,30 @@ public class DataReader {
         wishArrayList.add(firstSplit[1].trim());
     }
 
-    public static void main(String[] args){
-        System.out.println(args[0]);
-        DataReader reader = new DataReader(args[0], args[1], args[2]);
-        //System.out.println(reader.placesMap.get("B").getTypeOfPlace());
-        for (int i = 0; i < reader.timeMatrix.length; i++){
-            for (int j = 0; j < reader.timeMatrix.length; j++){
-                System.out.print(reader.timeMatrix[i][j] + "\t");
+    public void printStuff(){
+        for (int i = 0; i < timeMatrix.length; i++){
+            for (int j = 0; j < timeMatrix.length; j++){
+                System.out.print(timeMatrix[i][j] + "\t");
             }
             System.out.println();
         }
+        //System.out.println(reader.placesMap.get("B").getTypeOfPlace());
+
         //System.out.println(reader.placesCounter);
-        System.out.println(reader.wishArrayList);
-        System.out.println(reader.startPlace);
+        //System.out.println(reader.wishArrayList);
+        //System.out.println(reader.startPlace);
+        //System.out.println(reader.placesMapForWriting.get(0).getName());
+    }
+
+    public int[][] getTimeMatrix(){
+        return timeMatrix;
+    }
+
+    public String getStartPlace(){
+        return startPlace;
+    }
+
+    public HashMap<Integer, Place> getPlacesMapForWriting(){
+        return placesMapForWriting;
     }
 }
