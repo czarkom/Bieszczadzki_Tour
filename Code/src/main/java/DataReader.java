@@ -4,17 +4,22 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class DataReader {
     private String dataFile;
     private String startPlace;
     private String wishlist;
     private String currentLine;
+    private int placesCounter = 0;
+
+    private static final int NO_CONNECTION = 100000;
 
     private BufferedReader reader1;
     private BufferedReader reader2;
 
-    private ArrayList<Place> listOfPlaces = new ArrayList<>();
+    private HashMap<String, Place> placesMap = new HashMap<>();
+    private int[][] timeMatrix;
 
     public DataReader(String file1, String file2 ){
         this.dataFile = file1;
@@ -57,7 +62,8 @@ public class DataReader {
                 advance(reader1);
                 continue;
             }
-            if (currentLine.equals("### Czas przejścia")){
+            else if (currentLine.equals("### Czas przejścia")){
+                timeMatrix = new int[placesCounter][placesCounter];
                 getTimes();
                 break;
             }
@@ -76,6 +82,7 @@ public class DataReader {
                 continue;
             }
             System.out.println(currentLine);
+            parseLineInDataFileTimes();
             advance(reader1);
         }
     }
@@ -86,6 +93,7 @@ public class DataReader {
 
         while (this.currentLine != null){
             System.out.println(currentLine);
+            parseLineInWishListFile();
             advance(reader2);
         }
         System.out.println("Doszedłem");
@@ -99,24 +107,41 @@ public class DataReader {
     private void parseLineInDataFilePlaces(){
         Place place = new Place();
         String[] firstSplit = currentLine.split("\\|");
-        System.out.println(Arrays.asList(firstSplit));
-        System.out.println(firstSplit[0].trim());
+        //System.out.println(Arrays.asList(firstSplit));
+        //System.out.println(firstSplit[0].trim());
         String firstPart = "" + firstSplit[0].trim().charAt(0);
         int placeNumericId = Integer.parseInt(firstPart) - 1;
-        System.out.println(placeNumericId);
+        place.setNumericId(placeNumericId);
+        String id = firstSplit[1].trim();
+        place.setId(id);
+        String name = firstSplit[2].trim();
+        place.setName(name);
+        String description = firstSplit[3].trim();
+        place.setTypeOfPlace(description);
+        placesMap.put(id, place );
+        placesCounter++;
 
     }
 
     private void parseLineInDataFileTimes(){
-        String[] firstSplit = currentLine.split("|");
+        String[] firstSplit = currentLine.split("\\|");
+        //System.out.println(Arrays.asList(firstSplit));
+        String a = firstSplit[1].trim();
+        String b = firstSplit[2].trim();
+        String timeFromAToB = firstSplit[3].trim();
+        String timeFromBToA = firstSplit[4].trim();
+        int aNumericId = placesMap.get(a).getNumericId();
+        int bNumericId = placesMap.get(b).getNumericId();
+
     }
 
     private void parseLineInWishListFile(){
-        String[] firstSplit = currentLine.split("|");
+        String[] firstSplit = currentLine.split("\\|");
     }
 
     public static void main(String[] args){
         System.out.println(args[0]);
         DataReader reader = new DataReader(args[0], args[1]);
+        //System.out.println(reader.placesMap.get("B").getTypeOfPlace());
     }
 }
