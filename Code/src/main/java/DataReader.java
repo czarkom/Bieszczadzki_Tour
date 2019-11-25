@@ -13,13 +13,16 @@ public class DataReader {
     private String currentLine;
     private int placesCounter = 0;
 
-    private static final int NO_CONNECTION = 100000;
+    private static final int NO_CONNECTION = -1;
 
     private BufferedReader reader1;
     private BufferedReader reader2;
 
     private HashMap<String, Place> placesMap = new HashMap<>();
+
     private int[][] timeMatrix;
+
+    private ArrayList<String> wishArrayList = new ArrayList<>();
 
     public DataReader(String file1, String file2 ){
         this.dataFile = file1;
@@ -65,6 +68,11 @@ public class DataReader {
             else if (currentLine.equals("### Czas przejścia")){
                 timeMatrix = new int[placesCounter][placesCounter];
                 getTimes();
+                for (int i = 0; i < timeMatrix.length; i++){
+                    for (int j = 0; j < timeMatrix.length; j++){
+                        if (timeMatrix[i][j] == 0 ) timeMatrix[i][j] = NO_CONNECTION;
+                    }
+                }
                 break;
             }
             System.out.println(currentLine);
@@ -90,8 +98,11 @@ public class DataReader {
     private void getWishList(){
         initiateWishListReader();
         advance(reader2);
-
         while (this.currentLine != null){
+            if(currentLine.equals("### Wybrane miejsca podróży") || currentLine.equals("Lp. | ID_miejsca |")){
+                advance(reader2);
+                continue;
+            }
             System.out.println(currentLine);
             parseLineInWishListFile();
             advance(reader2);
@@ -130,18 +141,45 @@ public class DataReader {
         String b = firstSplit[2].trim();
         String timeFromAToB = firstSplit[3].trim();
         String timeFromBToA = firstSplit[4].trim();
+
         int aNumericId = placesMap.get(a).getNumericId();
         int bNumericId = placesMap.get(b).getNumericId();
+
+        String[] hoursAndMinutesFromAtoB = timeFromAToB.split(":");
+        int hoursAToB = Integer.parseInt(hoursAndMinutesFromAtoB[0].trim());
+        int minutesAToB = Integer.parseInt(hoursAndMinutesFromAtoB[1].trim());
+
+        String[] hoursAndMinutesFromBtoA = timeFromBToA.split(":");
+        int hoursBToA = Integer.parseInt(hoursAndMinutesFromBtoA[0].trim());
+        int minutesBToA = Integer.parseInt(hoursAndMinutesFromBtoA[1].trim());
+
+        int timeFromAToBInMinutes = hoursAToB*60 + minutesAToB;
+        int timeFromBToAInMinutes = hoursBToA*60 + minutesBToA;
+
+        timeMatrix[aNumericId][bNumericId] = timeFromAToBInMinutes;
+        timeMatrix[bNumericId][aNumericId] = timeFromBToAInMinutes;
+
+        //System.out.println("Od A do B:" + timeFromAToBInMinutes);
+        //System.out.println("Od B do A:" + timeFromBToAInMinutes);
 
     }
 
     private void parseLineInWishListFile(){
         String[] firstSplit = currentLine.split("\\|");
+        wishArrayList.add(firstSplit[1].trim());
     }
 
     public static void main(String[] args){
         System.out.println(args[0]);
         DataReader reader = new DataReader(args[0], args[1]);
         //System.out.println(reader.placesMap.get("B").getTypeOfPlace());
+        for (int i = 0; i < reader.timeMatrix.length; i++){
+            for (int j = 0; j < reader.timeMatrix.length; j++){
+                System.out.print(reader.timeMatrix[i][j] + "\t");
+            }
+            System.out.println();
+        }
+        System.out.println(reader.placesCounter);
+        System.out.println(reader.wishArrayList);
     }
 }
