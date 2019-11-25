@@ -24,9 +24,9 @@ public class DataReader {
 
     private ArrayList<String> wishArrayList = new ArrayList<>();
 
-    public DataReader(String file1, String file2 ){
+    public DataReader(String file1, String argument, String file2 ){
         this.dataFile = file1;
-        //this.startPlace = argument;
+        this.startPlace = argument;
         this.wishlist = file2;
         getConfig();
     }
@@ -75,7 +75,7 @@ public class DataReader {
                 }
                 break;
             }
-            System.out.println(currentLine);
+            //System.out.println(currentLine);
             parseLineInDataFilePlaces();
             advance(reader1);
         }
@@ -89,7 +89,7 @@ public class DataReader {
                 advance(reader1);
                 continue;
             }
-            System.out.println(currentLine);
+            //System.out.println(currentLine);
             parseLineInDataFileTimes();
             advance(reader1);
         }
@@ -103,11 +103,11 @@ public class DataReader {
                 advance(reader2);
                 continue;
             }
-            System.out.println(currentLine);
+            //System.out.println(currentLine);
             parseLineInWishListFile();
             advance(reader2);
         }
-        System.out.println("Doszedłem");
+        //System.out.println("Doszedłem");
     }
 
     private void getConfig(){
@@ -171,7 +171,7 @@ public class DataReader {
 
     public static void main(String[] args){
         System.out.println(args[0]);
-        DataReader reader = new DataReader(args[0], args[1]);
+        DataReader reader = new DataReader(args[0], args[1], args[2]);
         //System.out.println(reader.placesMap.get("B").getTypeOfPlace());
         for (int i = 0; i < reader.timeMatrix.length; i++){
             for (int j = 0; j < reader.timeMatrix.length; j++){
@@ -179,7 +179,8 @@ public class DataReader {
             }
             System.out.println();
         }
-        System.out.println(reader.placesCounter);
+        //System.out.println(reader.placesCounter);
         System.out.println(reader.wishArrayList);
+        System.out.println(reader.startPlace);
     }
 }
