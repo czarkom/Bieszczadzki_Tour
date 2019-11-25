@@ -1,5 +1,5 @@
-Start place:Fereczata
--->Okrąglik
--->Rabia Skała
--->Dziurkowiec
--->Jawornik
+Dziurkowiec
+--> Okrąglik
+--> Rabia Skała
+--> Dziurkowiec
+--> Jawornik

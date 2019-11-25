@@ -197,4 +197,8 @@ public class DataReader {
     public HashMap<Integer, Place> getPlacesMapForWriting(){
         return placesMapForWriting;
     }
+
+    public ArrayList<String> getWishArrayList(){
+        return wishArrayList;
+    }
 }

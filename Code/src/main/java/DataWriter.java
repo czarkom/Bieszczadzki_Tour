@@ -11,9 +11,9 @@ public class DataWriter {
                     writer = new BufferedWriter(new FileWriter("C:\\Maciej_general\\Maciej studia\\3 semestr\\Algorytmy i Struktury Danych\\Projekt Indywidualny\\2019Z_AISD_git_proj_ind_gr6\\Code\\Result\\result.txt"));
             for (int i = 0; i < result.length; i++) {
                 if (i == 0){
-                    writer.write("Start place:" + map.get(result[i]).getName() + "\n");
+                    writer.write(map.get(result[i]).getName() + "\n");
                 }else
-                writer.write("-->" + map.get(result[i]).getName() + "\n");
+                writer.write("--> " + map.get(result[i]).getName() + "\n");
             }
             writer.close();
         }catch (IOException e){
