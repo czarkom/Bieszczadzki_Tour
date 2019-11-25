@@ -2,7 +2,7 @@ import java.io.IOException;
 
 public class MainAlgorithm {
     public static void main(String[] args) throws IOException {
-        int[] finalResult = {1,4,2,3,1};
+        int[] finalResult = {5,4,2,3,1};
         DataReader reader = new DataReader(args[0], args[1], args[2]);
         int[][] matrix = reader.getTimeMatrix();
         for (int i = 0; i < matrix.length; i++){
