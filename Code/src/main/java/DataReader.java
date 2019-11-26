@@ -201,4 +201,6 @@ public class DataReader {
     public ArrayList<String> getWishArrayList(){
         return wishArrayList;
     }
+
+    public HashMap<String, Place> getPlacesMap(){ return  placesMap;}
 }
