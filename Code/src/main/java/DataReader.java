@@ -13,7 +13,7 @@ public class DataReader {
     private String currentLine;
     private int placesCounter = 0;
 
-    private static final int NO_CONNECTION = 99999;
+    public static final int NO_CONNECTION = 99999;
 
     private BufferedReader reader1;
     private BufferedReader reader2;
@@ -108,6 +108,7 @@ public class DataReader {
             parseLineInWishListFile();
             advance(reader2);
         }
+        wishArrayList.add(startPlace);
         //System.out.println("Doszedłem");
     }
 
@@ -198,9 +199,7 @@ public class DataReader {
         return placesMapForWriting;
     }
 
-    public ArrayList<String> getWishArrayList(){
-        return wishArrayList;
-    }
+    public ArrayList<String> getWishArrayList(){ return wishArrayList; }
 
     public HashMap<String, Place> getPlacesMap(){ return  placesMap;}
 }

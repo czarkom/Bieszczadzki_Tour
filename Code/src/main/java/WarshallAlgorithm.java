@@ -4,7 +4,8 @@ public class WarshallAlgorithm {
         for(int i = 0; i < result.length; i++){
             for(int j = 0; j < result.length; j++){
                 for(int k = 0; k < result.length; k++){
-                    if(result[j][i] + result[i][k] < result[j][k])
+                    if(j == k) result[j][k] = DataReader.NO_CONNECTION;
+                    else if(result[j][i] + result[i][k] < result[j][k])
                         result[j][k] = result[j][i] + result[i][k];
                 }
             }
