@@ -1,9 +1,7 @@
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class DataReader {
@@ -19,9 +17,12 @@ public class DataReader {
     private BufferedReader reader2;
 
     private HashMap<String, Place> placesMap = new HashMap<>();
-    private HashMap<Integer, Place> placesMapForWriting = new HashMap<>();
+    private HashMap<Integer, Place> placesMapIntegersKeys = new HashMap<>();
+    private HashMap<String, Integer> prices = new HashMap<>();
+
 
     private int[][] timeMatrix;
+    private int[][] priceMatrix;
 
     private ArrayList<String> wishArrayList = new ArrayList<>();
 
@@ -30,6 +31,8 @@ public class DataReader {
         this.startPlace = argument;
         this.wishlist = file2;
         getConfig();
+        System.out.println(prices.keySet());
+        System.out.println(prices.get("C-A"));
     }
 
     private void initiateDataReader(){
@@ -68,6 +71,7 @@ public class DataReader {
             }
             else if (currentLine.trim().equals("### Czas przejścia")){
                 timeMatrix = new int[placesCounter][placesCounter];
+                priceMatrix = new int[placesCounter][placesCounter];
                 getTimes();
                 for (int i = 0; i < timeMatrix.length; i++){
                     for (int j = 0; j < timeMatrix.length; j++){
@@ -82,8 +86,12 @@ public class DataReader {
         }
     }
 
+
+
     private void getTimes() {
         //System.out.println(currentLine);
+        initiatePricesMap();
+
         while (this.currentLine != null){
             if (currentLine.trim().equals("### Czas przejścia")
             || currentLine.trim().equals("Lp. | ID_miejsca_początkowego (S) | ID_miejsca_końcowego (E) | Czas S -> E | Czas E -> S | Jednorazowa opłata za przejście trasą (zł) |")){
@@ -120,6 +128,15 @@ public class DataReader {
         getWishList();
     }
 
+    private void initiatePricesMap(){
+        for(int i = 0; i < placesCounter; i++){
+            for(int j = 0; j < placesCounter; j++){
+                //System.out.println(prices.get(0));
+                prices.put(placesMapIntegersKeys.get(i).getId() + "-" + placesMapIntegersKeys.get(j).getId(), 0);
+            }
+        }
+    }
+
     private void parseLineInDataFilePlaces(){
         Place place = new Place();
         String[] firstSplit = currentLine.split("\\|");
@@ -134,8 +151,8 @@ public class DataReader {
         place.setName(name);
         String description = firstSplit[3].trim();
         place.setTypeOfPlace(description);
-        placesMap.put(id, place );
-        placesMapForWriting.put(placeNumericId, place);
+        placesMap.put(id, place);
+        placesMapIntegersKeys.put(placeNumericId, place);
         placesCounter++;
 
     }
@@ -147,6 +164,18 @@ public class DataReader {
         String b = firstSplit[2].trim();
         String timeFromAToB = firstSplit[3].trim();
         String timeFromBToA = firstSplit[4].trim();
+        String price = firstSplit[5].trim();
+        /*if (price.equals("--")){
+            prices.put(a + "-" + b, 0);
+            prices.put(b + "-" + a, 0);
+            //System.out.println(prices.get("B-E"));
+        }else if (Integer.parseInt(price) < 0 ){
+           throw new IllegalArgumentException("Cena nie może być niższa niż 0 zł!");
+        }
+        else{
+            prices.put(a + "-" + b, Integer.parseInt(price));
+            prices.put(b + "-" + a, Integer.parseInt(price));
+        }*/
 
         int aNumericId = placesMap.get(a).getNumericId();
         int bNumericId = placesMap.get(b).getNumericId();
@@ -164,6 +193,10 @@ public class DataReader {
 
         timeMatrix[aNumericId][bNumericId] = timeFromAToBInMinutes;
         timeMatrix[bNumericId][aNumericId] = timeFromBToAInMinutes;
+
+        if(price.equals("--")) price = "0";
+        priceMatrix[aNumericId][bNumericId] = Integer.parseInt(price);
+        priceMatrix[bNumericId][aNumericId] = Integer.parseInt(price);
 
         //System.out.println("Od A do B:" + timeFromAToBInMinutes);
         //System.out.println("Od B do A:" + timeFromBToAInMinutes);
@@ -183,11 +216,17 @@ public class DataReader {
         return startPlace;
     }
 
-    public HashMap<Integer, Place> getPlacesMapForWriting(){
-        return placesMapForWriting;
+    public int[][] getPriceMatrix() { return priceMatrix; }
+
+    public HashMap<Integer, Place> getPlacesMapIntegersKeys(){
+        return placesMapIntegersKeys;
     }
 
     public ArrayList<String> getWishArrayList(){ return wishArrayList; }
 
     public HashMap<String, Place> getPlacesMap(){ return  placesMap;}
+
+    public HashMap<String, Integer> getPrices() {
+        System.out.println("Cenaaaaaaaa -> " + prices.get("A-B"));
+        return prices; }
 }

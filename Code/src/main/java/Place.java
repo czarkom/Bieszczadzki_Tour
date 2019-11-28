@@ -5,7 +5,6 @@ public class Place {
     private String id;
     private String typeOfPlace;
     private int numericId;
-    private ArrayList<Place> listOfConnections;
     private boolean isVisited = false;
 
     public void setName(String name){
@@ -24,14 +23,6 @@ public class Place {
 
     public void setTypeOfPlace(String typeOfPlace){
         this.typeOfPlace = typeOfPlace;
-    }
-
-    public void addPathTo(Place place){
-        listOfConnections.add(place);
-    }
-
-    public ArrayList<Place> getListOfConnections(){
-        return listOfConnections;
     }
 
     public String getTypeOfPlace() {

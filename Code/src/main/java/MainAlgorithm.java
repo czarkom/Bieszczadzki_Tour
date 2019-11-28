@@ -4,14 +4,19 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class MainAlgorithm {
-    int[] finalResult = {1,2,3};
+    int[] finalResult;
     DataReader reader;
+    WarshallAlgorithm warshallAlgorithm;
     int[][] warshallResult;
     ArrayList<String> wishlist;
     HashMap<Integer, Place> smallerMap = new HashMap<>();
     private int[][] intermediateResult;
     int totalTimeInMinutes = 0;
+
     int[][] timeMatrix;
+    int[][] priceMatrix;
+    int[][] smallerPriceMatrix;
+
     String startPlace;
 
 
@@ -19,37 +24,28 @@ public class MainAlgorithm {
         MainAlgorithm program = new MainAlgorithm();
         program.reader = new DataReader(args[0], args[1], args[2]);
         program.runAlgorithm();
-        //int[][] matrix = program.reader.getTimeMatrix();
-        //program.printMatrix(matrix);
-        //program.wishlist = program.reader.getWishArrayList();
-
-        //WarshallAlgorithm warshall = new WarshallAlgorithm();
-        //program.warshallResult = warshall.findShortestPaths(matrix);
-        //program.printMatrix(program.warshallResult);
-
-        //System.out.println(program.reader.getWishArrayList());
-        //System.out.println(program.isDirectionPlaceOnWishlist(0));
-        //program.intermediateResult = program.createMapWithPlacesFromWishlist(program.warshallResult);
-        //program.printMatrix(program.intermediateResult);
-//      System.out.println(program.smallerMap.get(3).getName());
-        //program.finalResult = program.tsp(program.intermediateResult, 1);
-        //program.writeResult();
-
     }
 
     public void runAlgorithm() throws IOException {
         timeMatrix = reader.getTimeMatrix();
+        priceMatrix = reader.getPriceMatrix();
         printMatrix(timeMatrix);
+        printMatrix(priceMatrix);
         wishlist = reader.getWishArrayList();
         startPlace = reader.getStartPlace();
-        WarshallAlgorithm warshall = new WarshallAlgorithm();
-        warshallResult = warshall.findShortestPaths(timeMatrix);
+        warshallAlgorithm = new WarshallAlgorithm(priceMatrix);
+        warshallResult = warshallAlgorithm.findShortestPaths(timeMatrix);
         printMatrix(warshallResult);
+
+        System.out.println("\n\n\nMacierz kasy: ");
+        printMatrix(warshallAlgorithm.getPriceMatrix());
 
         System.out.println(reader.getWishArrayList());
 
         intermediateResult = createMapWithPlacesFromWishlist(warshallResult);
         printMatrix(intermediateResult);
+        System.out.println("Macierz kasy po zmniejszeniu:");
+        printMatrix(smallerPriceMatrix);
 
         finalResult = tsp(intermediateResult, findStartPlaceIndexInSmallerMap(smallerMap));
         writeResult();
@@ -57,7 +53,16 @@ public class MainAlgorithm {
 
     public void writeResult() throws IOException {
         DataWriter writer = new DataWriter();
-        writer.writeTofile(finalResult, smallerMap, totalTimeInMinutes);
+        writer.writeTofile(finalResult, smallerMap, totalTimeInMinutes, calculateTotalPrice(finalResult));
+    }
+
+    private int calculateTotalPrice(int[] result){
+        int total = 0;
+        for(int i = 0; i < result.length - 2; i++){
+            total += smallerPriceMatrix[i][i+1];
+        }
+        total += smallerPriceMatrix[result.length - 2][0];
+        return total;
     }
 
     public void printMatrix(int[][] matrix){
@@ -74,13 +79,14 @@ public class MainAlgorithm {
         boolean flag = false;
         //wishlist = reader.getWishArrayList();
         for(int i = 0; i < wishlist.size(); i++){
-            if(wishlist.get(i).equals(reader.getPlacesMapForWriting().get(x).getId())) flag = true;
+            if(wishlist.get(i).equals(reader.getPlacesMapIntegersKeys().get(x).getId())) flag = true;
         }
         return flag;
     }
 
     private int[][] createMapWithPlacesFromWishlist(int[][] matrix){
         int[][] result = new int[wishlist.size()][wishlist.size()];
+        smallerPriceMatrix = new int[wishlist.size()][wishlist.size()];
         int k = 0;
         int l = 0;
 
@@ -89,12 +95,13 @@ public class MainAlgorithm {
                 for (int j = 0; j < matrix.length; j++) {
                     if (isDirectionPlaceOnWishlist(j)) {
                         result[l][k] = matrix[i][j];
+                        smallerPriceMatrix[l][k] = priceMatrix[i][j];
                         k++;
                     } else {
                         continue;
                     }
                 }
-                smallerMap.put(l, reader.getPlacesMapForWriting().get(i));
+                smallerMap.put(l, reader.getPlacesMapIntegersKeys().get(i));
                 l++;
             }
             k = 0;
