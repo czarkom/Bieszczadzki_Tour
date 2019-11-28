@@ -1,4 +1,4 @@
-### Miejsca podróży
+ ### Miejsca podróży
 Lp. | ID_miejsca | Nazwa miejsca | Opis miejsca |
 1. | A | Koliba Studencka Politechniki Warszawskiej | Baza wypadowa (miejsce rozpoczęcia wędrówki) |
 2. | B | Jawornik | Szczyt (1021) |

@@ -61,12 +61,12 @@ public class DataReader {
         advance(reader1);
 
         while (this.currentLine != null){
-            if (currentLine.equals("### Miejsca podróży") || currentLine.equals("")
-            || currentLine.equals("Lp. | ID_miejsca | Nazwa miejsca | Opis miejsca |")){
+            if (currentLine.trim().equals("### Miejsca podróży") || currentLine.equals("")
+            || currentLine.trim().equals("Lp. | ID_miejsca | Nazwa miejsca | Opis miejsca |")){
                 advance(reader1);
                 continue;
             }
-            else if (currentLine.equals("### Czas przejścia")){
+            else if (currentLine.trim().equals("### Czas przejścia")){
                 timeMatrix = new int[placesCounter][placesCounter];
                 getTimes();
                 for (int i = 0; i < timeMatrix.length; i++){
@@ -85,8 +85,8 @@ public class DataReader {
     private void getTimes() {
         //System.out.println(currentLine);
         while (this.currentLine != null){
-            if (currentLine.equals("### Czas przejścia")
-            || currentLine.equals("Lp. | ID_miejsca_początkowego (S) | ID_miejsca_końcowego (E) | Czas S -> E | Czas E -> S | Jednorazowa opłata za przejście trasą (zł) |")){
+            if (currentLine.trim().equals("### Czas przejścia")
+            || currentLine.trim().equals("Lp. | ID_miejsca_początkowego (S) | ID_miejsca_końcowego (E) | Czas S -> E | Czas E -> S | Jednorazowa opłata za przejście trasą (zł) |")){
                 advance(reader1);
                 continue;
             }
@@ -97,6 +97,7 @@ public class DataReader {
     }
 
     private void getWishList(){
+        boolean isAlreadyonWishList = false;
         initiateWishListReader();
         advance(reader2);
         while (this.currentLine != null){
@@ -104,12 +105,14 @@ public class DataReader {
                 advance(reader2);
                 continue;
             }
-            //System.out.println(currentLine);
             parseLineInWishListFile();
             advance(reader2);
         }
-        wishArrayList.add(startPlace);
-        //System.out.println("Doszedłem");
+        for (int i = 0; i < wishArrayList.size(); i++) {
+            if (startPlace.equals(wishArrayList.get(i))) isAlreadyonWishList = true;
+        }
+        if (!isAlreadyonWishList) wishArrayList.add(startPlace);
+        //System.out.println(isAlreadyonWishList);
     }
 
     private void getConfig(){
@@ -170,21 +173,6 @@ public class DataReader {
     private void parseLineInWishListFile(){
         String[] firstSplit = currentLine.split("\\|");
         wishArrayList.add(firstSplit[1].trim());
-    }
-
-    public void printStuff(){
-        for (int i = 0; i < timeMatrix.length; i++){
-            for (int j = 0; j < timeMatrix.length; j++){
-                System.out.print(timeMatrix[i][j] + "\t");
-            }
-            System.out.println();
-        }
-        //System.out.println(reader.placesMap.get("B").getTypeOfPlace());
-
-        //System.out.println(reader.placesCounter);
-        //System.out.println(reader.wishArrayList);
-        //System.out.println(reader.startPlace);
-        //System.out.println(reader.placesMapForWriting.get(0).getName());
     }
 
     public int[][] getTimeMatrix(){

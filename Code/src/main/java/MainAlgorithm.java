@@ -107,6 +107,7 @@ public class MainAlgorithm {
         for(int i = 0; i < visited.length; i++) visited[i] = Integer.MAX_VALUE;
         visited[0] = startIndex;
         int nextline = startIndex;
+        //smallerMap.get(startIndex).setVisited();
         for (int i = 0; i < times.length; i++){
             int lowestValue = Integer.MAX_VALUE;
             for (int j = 0; j < times.length; j++){

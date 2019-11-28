@@ -6,10 +6,13 @@ public class Place {
     private String typeOfPlace;
     private int numericId;
     private ArrayList<Place> listOfConnections;
+    private boolean isVisited = false;
 
     public void setName(String name){
         this.name = name;
     }
+
+    public void setVisited() {this.isVisited = true; }
 
     public void setNumericId(int numericId) {
         this.numericId = numericId;
@@ -46,4 +49,6 @@ public class Place {
     public int getNumericId() {
         return numericId;
     }
+
+    public boolean isVisited() { return isVisited; }
 }
