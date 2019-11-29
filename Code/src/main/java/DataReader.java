@@ -126,7 +126,7 @@ public class DataReader {
     }
 
     private void parseLineInDataFilePlaces(){
-        if(!currentLine.matches("^[0-9]+\\. \\| [A-z0-9]+ \\| [^|]+ \\| [^|]* \\|$")) throw new IllegalArgumentException("Źle sformatowane ID w linii nr " + (lineNumber+1));
+        if(!currentLine.matches("^[0-9]+\\. \\| [A-z0-9]+ \\| [^|]+ \\| [^|]* \\|$")) throw new IllegalArgumentException("Źle sformatowana linia nr " + (lineNumber+1));
         Place place = new Place();
         String  number;
         String[] firstSplit = currentLine.split("\\|");
@@ -213,6 +213,4 @@ public class DataReader {
     }
 
     public ArrayList<String> getWishArrayList(){ return wishArrayList; }
-
-    public HashMap<String, Place> getPlacesMap(){ return  placesMap;}
 }
