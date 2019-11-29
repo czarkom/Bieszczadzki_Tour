@@ -11,13 +11,13 @@ public class MainAlgorithm {
     ArrayList<String> wishlist;
     HashMap<Integer, Place> smallerMap = new HashMap<>();
     private int[][] intermediateResult;
-    int totalTimeInMinutes = 0;
+    private int totalTimeInMinutes = 0;
 
-    int[][] timeMatrix;
-    int[][] priceMatrix;
-    int[][] smallerPriceMatrix;
+    private int[][] timeMatrix;
+    private int[][] priceMatrix;
+    private int[][] smallerPriceMatrix;
 
-    String startPlace;
+    private String startPlace;
 
 
     public static void main(String[] args) throws IOException {
