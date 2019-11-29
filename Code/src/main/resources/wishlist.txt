@@ -4,3 +4,4 @@ Lp. | ID_miejsca |
 2. |B|
 3. |E|
 5. |C|
+6. |AE|

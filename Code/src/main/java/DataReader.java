@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.IllegalFormatException;
+import java.util.regex.Pattern;
 
 public class DataReader {
     private String dataFile;
@@ -11,15 +13,15 @@ public class DataReader {
     private String wishlist;
     private String currentLine;
     private int placesCounter = 0;
+    private int lineNumber = 0;
 
-    public static final int NO_CONNECTION = 99999;
+    public static final int NO_CONNECTION = 999999;
 
     private BufferedReader reader1;
     private BufferedReader reader2;
 
     private HashMap<String, Place> placesMap = new HashMap<>();
     private HashMap<Integer, Place> placesMapIntegersKeys = new HashMap<>();
-    //private HashMap<String, Integer> prices = new HashMap<>();
 
 
     private int[][] timeMatrix;
@@ -32,8 +34,6 @@ public class DataReader {
         this.startPlace = argument;
         this.wishlist = file2;
         getConfig();
-        //System.out.println(prices.keySet());
-        //System.out.println(prices.get("C-A"));
     }
 
     private void initiateDataReader(){
@@ -90,16 +90,12 @@ public class DataReader {
 
 
     private void getTimes() {
-        //System.out.println(currentLine);
-        //initiatePricesMap();
-
         while (this.currentLine != null){
             if (currentLine.trim().equals("### Czas przejścia")
             || currentLine.trim().equals("Lp. | ID_miejsca_początkowego (S) | ID_miejsca_końcowego (E) | Czas S -> E | Czas E -> S | Jednorazowa opłata za przejście trasą (zł) |")){
                 advance(reader1);
                 continue;
             }
-            //System.out.println(currentLine);
             parseLineInDataFileTimes();
             advance(reader1);
         }
@@ -129,16 +125,8 @@ public class DataReader {
         getWishList();
     }
 
-    /*private void initiatePricesMap(){
-        for(int i = 0; i < placesCounter; i++){
-            for(int j = 0; j < placesCounter; j++){
-                //System.out.println(prices.get(0));
-                prices.put(placesMapIntegersKeys.get(i).getId() + "-" + placesMapIntegersKeys.get(j).getId(), 0);
-            }
-        }
-    }*/
-
     private void parseLineInDataFilePlaces(){
+        if(!currentLine.matches("^[0-9]+\\. \\| [A-z0-9]+ \\| [^|]+ \\| [^|]* \\|$")) throw new IllegalArgumentException("Źle sformatowane ID w linii nr " + (lineNumber+1));
         Place place = new Place();
         String  number;
         String[] firstSplit = currentLine.split("\\|");
@@ -149,36 +137,27 @@ public class DataReader {
         System.out.println(placeNumericId);
         place.setNumericId(placeNumericId);
         String id = firstSplit[1].trim();
+
         place.setId(id);
         String name = firstSplit[2].trim();
+
         place.setName(name);
         String description = firstSplit[3].trim();
         place.setTypeOfPlace(description);
         placesMap.put(id, place);
         placesMapIntegersKeys.put(placeNumericId, place);
         placesCounter++;
+        lineNumber++;
 
     }
 
     private void parseLineInDataFileTimes(){
         String[] firstSplit = currentLine.split("\\|");
-        System.out.println(Arrays.asList(firstSplit));
         String a = firstSplit[1].trim();
         String b = firstSplit[2].trim();
         String timeFromAToB = firstSplit[3].trim();
         String timeFromBToA = firstSplit[4].trim();
         String price = firstSplit[5].trim();
-        /*if (price.equals("--")){
-            prices.put(a + "-" + b, 0);
-            prices.put(b + "-" + a, 0);
-            //System.out.println(prices.get("B-E"));
-        }else if (Integer.parseInt(price) < 0 ){
-           throw new IllegalArgumentException("Cena nie może być niższa niż 0 zł!");
-        }
-        else{
-            prices.put(a + "-" + b, Integer.parseInt(price));
-            prices.put(b + "-" + a, Integer.parseInt(price));
-        }*/
 
         int aNumericId = placesMap.get(a).getNumericId();
         int bNumericId = placesMap.get(b).getNumericId();
@@ -194,11 +173,11 @@ public class DataReader {
         int timeFromAToBInMinutes = hoursAToB*60 + minutesAToB;
         int timeFromBToAInMinutes = hoursBToA*60 + minutesBToA;
 
-        System.out.println("Time from " + placesMap.get(b).getId() + " to " + placesMap.get(a).getId() + " in minutes: " + timeFromBToAInMinutes);
+        /*System.out.println("Time from " + placesMap.get(b).getId() + " to " + placesMap.get(a).getId() + " in minutes: " + timeFromBToAInMinutes);
         System.out.println("Time from " + placesMap.get(a).getId() + " to " + placesMap.get(b).getId() + " in minutes: " + timeFromAToBInMinutes);
 
         System.out.println(aNumericId);
-        System.out.println(bNumericId);
+        System.out.println(bNumericId);*/
 
         timeMatrix[aNumericId][bNumericId] = timeFromAToBInMinutes;
         timeMatrix[bNumericId][aNumericId] = timeFromBToAInMinutes;
@@ -207,14 +186,16 @@ public class DataReader {
         priceMatrix[aNumericId][bNumericId] = Integer.parseInt(price);
         priceMatrix[bNumericId][aNumericId] = Integer.parseInt(price);
 
-        //System.out.println("Od A do B:" + timeFromAToBInMinutes);
-        //System.out.println("Od B do A:" + timeFromBToAInMinutes);
-
     }
 
     private void parseLineInWishListFile(){
         String[] firstSplit = currentLine.split("\\|");
-        wishArrayList.add(firstSplit[1].trim());
+        boolean isAlreadyonWishList = false;
+        String point = firstSplit[1].trim();
+        for (int i = 0; i < wishArrayList.size(); i++) {
+            if (point.equals(wishArrayList.get(i))) isAlreadyonWishList = true;
+        }
+        if(!isAlreadyonWishList) wishArrayList.add(point);
     }
 
     public int[][] getTimeMatrix(){
@@ -234,8 +215,4 @@ public class DataReader {
     public ArrayList<String> getWishArrayList(){ return wishArrayList; }
 
     public HashMap<String, Place> getPlacesMap(){ return  placesMap;}
-
-/*    public HashMap<String, Integer> getPrices() {
-        System.out.println("Cenaaaaaaaa -> " + prices.get("A-B"));
-        return prices; }*/
 }
