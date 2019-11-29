@@ -29,20 +29,28 @@ public class MainAlgorithm {
     public void runAlgorithm() throws IOException {
         timeMatrix = reader.getTimeMatrix();
         priceMatrix = reader.getPriceMatrix();
+
+        System.out.println("Macierz czasów:");
         printMatrix(timeMatrix);
+
+        System.out.println("Macierz kasy przejść pomiędzy wszystkimi punktami:");
         printMatrix(priceMatrix);
         wishlist = reader.getWishArrayList();
         startPlace = reader.getStartPlace();
         warshallAlgorithm = new WarshallAlgorithm(priceMatrix);
         warshallResult = warshallAlgorithm.findShortestPaths(timeMatrix);
+
+        System.out.println("Macierz czasów po Warshallu: ");
         printMatrix(warshallResult);
 
-        System.out.println("\n\n\nMacierz kasy: ");
+        System.out.println("\n\n\nMacierz kasy po Warshallu: ");
         printMatrix(warshallAlgorithm.getPriceMatrix());
 
-        System.out.println(reader.getWishArrayList());
+        System.out.println("Lista wybranych miejsc:");
+        System.out.println(reader.getWishArrayList() + "\n");
 
         intermediateResult = createMapWithPlacesFromWishlist(warshallResult);
+        System.out.println("Macierz po warshallu i zmniejszeniu do rozmiarow listy wybranych miejsc:");
         printMatrix(intermediateResult);
         System.out.println("Macierz kasy po zmniejszeniu:");
         printMatrix(smallerPriceMatrix);
@@ -77,7 +85,7 @@ public class MainAlgorithm {
 
     private boolean isDirectionPlaceOnWishlist(int x){
         boolean flag = false;
-        //wishlist = reader.getWishArrayList();
+        wishlist = reader.getWishArrayList();
         for(int i = 0; i < wishlist.size(); i++){
             if(wishlist.get(i).equals(reader.getPlacesMapIntegersKeys().get(x).getId())) flag = true;
         }

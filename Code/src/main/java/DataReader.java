@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class DataReader {
@@ -18,7 +19,7 @@ public class DataReader {
 
     private HashMap<String, Place> placesMap = new HashMap<>();
     private HashMap<Integer, Place> placesMapIntegersKeys = new HashMap<>();
-    private HashMap<String, Integer> prices = new HashMap<>();
+    //private HashMap<String, Integer> prices = new HashMap<>();
 
 
     private int[][] timeMatrix;
@@ -31,8 +32,8 @@ public class DataReader {
         this.startPlace = argument;
         this.wishlist = file2;
         getConfig();
-        System.out.println(prices.keySet());
-        System.out.println(prices.get("C-A"));
+        //System.out.println(prices.keySet());
+        //System.out.println(prices.get("C-A"));
     }
 
     private void initiateDataReader(){
@@ -90,7 +91,7 @@ public class DataReader {
 
     private void getTimes() {
         //System.out.println(currentLine);
-        initiatePricesMap();
+        //initiatePricesMap();
 
         while (this.currentLine != null){
             if (currentLine.trim().equals("### Czas przejścia")
@@ -128,22 +129,24 @@ public class DataReader {
         getWishList();
     }
 
-    private void initiatePricesMap(){
+    /*private void initiatePricesMap(){
         for(int i = 0; i < placesCounter; i++){
             for(int j = 0; j < placesCounter; j++){
                 //System.out.println(prices.get(0));
                 prices.put(placesMapIntegersKeys.get(i).getId() + "-" + placesMapIntegersKeys.get(j).getId(), 0);
             }
         }
-    }
+    }*/
 
     private void parseLineInDataFilePlaces(){
         Place place = new Place();
+        String  number;
         String[] firstSplit = currentLine.split("\\|");
-        //System.out.println(Arrays.asList(firstSplit));
-        //System.out.println(firstSplit[0].trim());
-        String firstPart = "" + firstSplit[0].trim().charAt(0);
-        int placeNumericId = Integer.parseInt(firstPart) - 1;
+        String firstPart = firstSplit[0];
+        String[] numerousPart = firstPart.split("\\.");
+        number = numerousPart[0].trim();
+        int placeNumericId = Integer.parseInt(number) - 1;
+        System.out.println(placeNumericId);
         place.setNumericId(placeNumericId);
         String id = firstSplit[1].trim();
         place.setId(id);
@@ -159,7 +162,7 @@ public class DataReader {
 
     private void parseLineInDataFileTimes(){
         String[] firstSplit = currentLine.split("\\|");
-        //System.out.println(Arrays.asList(firstSplit));
+        System.out.println(Arrays.asList(firstSplit));
         String a = firstSplit[1].trim();
         String b = firstSplit[2].trim();
         String timeFromAToB = firstSplit[3].trim();
@@ -190,6 +193,12 @@ public class DataReader {
 
         int timeFromAToBInMinutes = hoursAToB*60 + minutesAToB;
         int timeFromBToAInMinutes = hoursBToA*60 + minutesBToA;
+
+        System.out.println("Time from " + placesMap.get(b).getId() + " to " + placesMap.get(a).getId() + " in minutes: " + timeFromBToAInMinutes);
+        System.out.println("Time from " + placesMap.get(a).getId() + " to " + placesMap.get(b).getId() + " in minutes: " + timeFromAToBInMinutes);
+
+        System.out.println(aNumericId);
+        System.out.println(bNumericId);
 
         timeMatrix[aNumericId][bNumericId] = timeFromAToBInMinutes;
         timeMatrix[bNumericId][aNumericId] = timeFromBToAInMinutes;
@@ -226,7 +235,7 @@ public class DataReader {
 
     public HashMap<String, Place> getPlacesMap(){ return  placesMap;}
 
-    public HashMap<String, Integer> getPrices() {
+/*    public HashMap<String, Integer> getPrices() {
         System.out.println("Cenaaaaaaaa -> " + prices.get("A-B"));
-        return prices; }
+        return prices; }*/
 }

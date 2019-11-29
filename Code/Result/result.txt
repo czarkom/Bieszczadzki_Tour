@@ -1,9 +1,8 @@
-Fereczata
---> Dziurkowiec
---> Jawornik
---> Rabia Skała
---> Koliba Studencka Politechniki Warszawskiej
---> Okrąglik
+Okrąglik
 --> Fereczata
-Czas:21 godzin 30 minut
-Koszt:15 zł
+--> Smerek (szczyt)
+--> Przełęcz M. Orłowicza
+--> Stare Sioło
+--> Okrąglik
+Czas:14 godzin 50 minut
+Koszt:10 zł
