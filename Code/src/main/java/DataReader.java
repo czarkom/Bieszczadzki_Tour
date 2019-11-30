@@ -65,31 +65,28 @@ public class DataReader {
             throw new IllegalArgumentException("Druga linia powinna zawierać poprawnie sformatowane tytuły sekcji w części z danymi");
         advance(reader1);
 
-        while (this.currentLine != null) {
-            if (currentLine.equals("")) {
-                advance(reader1);
-                continue;
-            } else if (currentLine.trim().equals("### Czas przejścia")) {
-                timeMatrix = new int[placesCounter][placesCounter];
-                priceMatrix = new int[placesCounter][placesCounter];
-                lineNumber = 1;
-                getTimes();
-                for (int i = 0; i < timeMatrix.length; i++) {
-                    for (int j = 0; j < timeMatrix.length; j++) {
-                        if (timeMatrix[i][j] == 0) timeMatrix[i][j] = INFINITE_DISTANCE;
-                    }
-                }
-                break;
-            }
+        while (!currentLine.equals("")) {
             parseLineInDataFilePlaces();
             advance(reader1);
+        }
+
+        advance(reader1);
+        timeMatrix = new int[placesCounter][placesCounter];
+        priceMatrix = new int[placesCounter][placesCounter];
+        lineNumber = 1;
+        getTimes();
+        for (int i = 0; i < timeMatrix.length; i++) {
+            for (int j = 0; j < timeMatrix.length; j++) {
+                if (timeMatrix[i][j] == 0) timeMatrix[i][j] = INFINITE_DISTANCE;
+            }
         }
     }
 
 
     private void getTimes() {
         if (!currentLine.trim().equals("### Czas przejścia"))
-            throw new IllegalArgumentException("Pierwsza linia sekcji czasów powinna zawierać poprawnie sformatowany tytuł ,,### Czas przejścia'' ");
+            throw new IllegalArgumentException("Pierwsza linia sekcji czasów powinna zawierać poprawnie" +
+                    " sformatowany tytuł ,,### Czas przejścia'', pamiętaj o JEDNEJ lini przerwy pomiędzy sekcjami.");
         while (this.currentLine != null) {
             if (currentLine.trim().equals("### Czas przejścia")
                     || currentLine.trim().equals("Lp. | ID_miejsca_początkowego (S) | ID_miejsca_końcowego (E) | Czas S -> E | Czas E -> S | Jednorazowa opłata za przejście trasą (zł) |")) {
@@ -118,7 +115,6 @@ public class DataReader {
             if (startPlace.equals(wishArrayList.get(i))) isAlreadyonWishList = true;
         }
         if (!isAlreadyonWishList) wishArrayList.add(startPlace);
-        //System.out.println(isAlreadyonWishList);
     }
 
     private void getConfig() {
@@ -169,6 +165,9 @@ public class DataReader {
         String timeFromAToB = firstSplit[3].trim();
         String timeFromBToA = firstSplit[4].trim();
         String price = firstSplit[5].trim();
+
+        if (placesMap.get(a) == null || placesMap.get(b) == null)
+            throw new IllegalArgumentException("Niepoprawne ID miejsca w lini nr " + lineNumber + " w części z czasami przejść");
 
         int aNumericId = placesMap.get(a).getNumericId();
         int bNumericId = placesMap.get(b).getNumericId();
