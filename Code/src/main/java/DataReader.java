@@ -101,11 +101,18 @@ public class DataReader {
     private void getWishList() {
         boolean isAlreadyonWishList = false;
         initiateWishListReader();
+        lineNumber = 1;
+        advance(reader2);
+        if(!currentLine.trim().equals("### Wybrane miejsca podróży"))
+            throw new IllegalArgumentException("Pierwsza linia pliku z listą wybranych miejsc jest błędnie sformatowana.");
+        advance(reader2);
+        if(!currentLine.trim().equals("Lp. | ID_miejsca |"))
+            throw new IllegalArgumentException("Druga linia pliku z listą wybranych miejsc jest błędnie sformatowana.");
         advance(reader2);
         while (this.currentLine != null) {
-            if (currentLine.equals("### Wybrane miejsca podróży") || currentLine.equals("Lp. | ID_miejsca |")
-                    || currentLine.equals("")) {
+            if (currentLine.equals("")) {
                 advance(reader2);
+                lineNumber++;
                 continue;
             }
             parseLineInWishListFile();
@@ -118,13 +125,17 @@ public class DataReader {
     }
 
     private void getConfig() {
-        getData();
-        getWishList();
+        try {
+            getData();
+            getWishList();
+        } catch (NullPointerException e){
+            System.out.println("Sprawdź czy formatowanie plików jest zgodne ze specyfikacją funkcjonalną!");
+        }
     }
 
     private void parseLineInDataFilePlaces() {
         System.out.println(currentLine);
-        if (!currentLine.matches("^[0-9]+\\. \\| [A-z0-9]+ \\| [^|]+ \\| [^|]* \\|$"))
+        if (!currentLine.trim().matches("^[0-9]+\\. \\| [A-z0-9]+ \\| [^|]+ \\| [^|]* \\|$"))
             throw new IllegalArgumentException("Źle sformatowana linia nr " + (lineNumber + 1) + " w części z nazwami miejsc.");
         Place place = new Place();
         String number;
@@ -157,7 +168,7 @@ public class DataReader {
     }
 
     private void parseLineInDataFileTimes() {
-        if (!currentLine.matches("^[0-9]+\\. \\| [A-z0-9]+ \\| [A-z0-9]+ \\| \\d+:\\d{2} \\| \\d+:\\d{2} \\| (\\d+|--) \\|$"))
+        if (!currentLine.trim().matches("^[0-9]+\\. \\| [A-z0-9]+ \\| [A-z0-9]+ \\| \\d+:\\d{2} \\| \\d+:\\d{2} \\| (\\d+|--) \\|$"))
             throw new IllegalArgumentException("Żle sformatowana linia nr " + lineNumber + " w części z czasami przejść.");
         String[] firstSplit = currentLine.split("\\|");
         String a = firstSplit[1].trim();
@@ -200,13 +211,19 @@ public class DataReader {
     }
 
     private void parseLineInWishListFile() {
+        System.out.println(currentLine);
+        if (!currentLine.trim().matches("^[0-9]+\\. \\| [A-z0-9]+ \\|$"))
+            throw new IllegalArgumentException("Błąd w pliku z wybranymi miejscami w lini nr " + lineNumber);
         String[] firstSplit = currentLine.split("\\|");
         boolean isAlreadyonWishList = false;
         String point = firstSplit[1].trim();
+        if (placesMap.get(point) == null)
+            throw new IllegalArgumentException("Miejsce o wybranym ID nie istnieje w pliku z danymi (linia nr " + lineNumber + ")");
         for (int i = 0; i < wishArrayList.size(); i++) {
             if (point.equals(wishArrayList.get(i))) isAlreadyonWishList = true;
         }
         if (!isAlreadyonWishList) wishArrayList.add(point);
+        lineNumber++;
     }
 
     public int[][] getTimeMatrix() {
