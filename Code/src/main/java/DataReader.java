@@ -144,6 +144,7 @@ public class DataReader {
         place.setName(name);
         String description = firstSplit[3].trim();
         place.setTypeOfPlace(description);
+        if(placesMap.get(id) != null) throw new IllegalArgumentException("Nie może wystąpić dwa razy to samo id! Sprawdź linię nr " + (lineNumber+1));
         placesMap.put(id, place);
         placesMapIntegersKeys.put(placeNumericId, place);
         placesCounter++;
