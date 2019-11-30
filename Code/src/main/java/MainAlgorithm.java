@@ -64,18 +64,18 @@ public class MainAlgorithm {
         writer.writeTofile(finalResult, smallerMap, totalTimeInMinutes, calculateTotalPrice(finalResult));
     }
 
-    private int calculateTotalPrice(int[] result){
+    private int calculateTotalPrice(int[] result) {
         int total = 0;
-        for(int i = 0; i < result.length - 2; i++){
-            total += smallerPriceMatrix[i][i+1];
+        for (int i = 0; i < result.length - 2; i++) {
+            total += smallerPriceMatrix[i][i + 1];
         }
         total += smallerPriceMatrix[result.length - 2][0];
         return total;
     }
 
-    public void printMatrix(int[][] matrix){
-        for (int i = 0; i < matrix.length; i++){
-            for (int j = 0; j < matrix.length; j++){
+    public void printMatrix(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
                 System.out.print(matrix[i][j] + "\t");
             }
             System.out.println();
@@ -83,23 +83,23 @@ public class MainAlgorithm {
         System.out.println("\n");
     }
 
-    private boolean isDirectionPlaceOnWishlist(int x){
+    private boolean isDirectionPlaceOnWishlist(int x) {
         boolean flag = false;
         wishlist = reader.getWishArrayList();
-        for(int i = 0; i < wishlist.size(); i++){
-            if(wishlist.get(i).equals(reader.getPlacesMapIntegersKeys().get(x).getId())) flag = true;
+        for (int i = 0; i < wishlist.size(); i++) {
+            if (wishlist.get(i).equals(reader.getPlacesMapIntegersKeys().get(x).getId())) flag = true;
         }
         return flag;
     }
 
-    private int[][] createMapWithPlacesFromWishlist(int[][] matrix){
+    private int[][] createMapWithPlacesFromWishlist(int[][] matrix) {
         int[][] result = new int[wishlist.size()][wishlist.size()];
         smallerPriceMatrix = new int[wishlist.size()][wishlist.size()];
         int k = 0;
         int l = 0;
 
-        for(int i = 0; i < matrix.length; i++ ) {
-            if(isDirectionPlaceOnWishlist(i)){
+        for (int i = 0; i < matrix.length; i++) {
+            if (isDirectionPlaceOnWishlist(i)) {
                 for (int j = 0; j < matrix.length; j++) {
                     if (isDirectionPlaceOnWishlist(j)) {
                         result[l][k] = matrix[i][j];
@@ -117,30 +117,30 @@ public class MainAlgorithm {
         return result;
     }
 
-    private int[] tsp(int[][] times, int startIndex){
+    private int[] tsp(int[][] times, int startIndex) {
         int[] visited = new int[times.length + 1];
-        for(int i = 0; i < visited.length; i++) visited[i] = Integer.MAX_VALUE;
+        for (int i = 0; i < visited.length; i++) visited[i] = Integer.MAX_VALUE;
         visited[0] = startIndex;
         int nextline = startIndex;
         //smallerMap.get(startIndex).setVisited();
-        for (int i = 0; i < times.length; i++){
+        for (int i = 0; i < times.length; i++) {
             int lowestValue = Integer.MAX_VALUE;
-            for (int j = 0; j < times.length; j++){
+            for (int j = 0; j < times.length; j++) {
                 boolean isVisited = false;
-                for( int k = 0; k < times.length; k++){
+                for (int k = 0; k < times.length; k++) {
                     if (j == visited[k]) isVisited = true;
                 }
-                if (!isVisited && lowestValue > times[nextline][j]){
+                if (!isVisited && lowestValue > times[nextline][j]) {
                     lowestValue = times[nextline][j];
                     visited[i + 1] = j;
                 }
             }
-            if( i == times.length - 1){
+            if (i == times.length - 1) {
                 totalTimeInMinutes += times[nextline][startIndex];
-            }else totalTimeInMinutes += lowestValue;
+            } else totalTimeInMinutes += lowestValue;
             System.out.println(visited[i]);
             System.out.println(totalTimeInMinutes);
-            if(i + 1 < times.length ) {
+            if (i + 1 < times.length) {
                 nextline = visited[i + 1];
             }
         }
@@ -149,10 +149,10 @@ public class MainAlgorithm {
         return visited;
     }
 
-    public int findStartPlaceIndexInSmallerMap(HashMap<Integer, Place> map){
+    public int findStartPlaceIndexInSmallerMap(HashMap<Integer, Place> map) {
         int index = -1;
-        for (int i = 0; i < intermediateResult.length; i++){
-            if(map.get(i).getId().equals(startPlace)){
+        for (int i = 0; i < intermediateResult.length; i++) {
+            if (map.get(i).getId().equals(startPlace)) {
                 index = i;
                 break;
             }
