@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -54,7 +52,7 @@ public class DataReader {
 
     private void initiateDataReader() {
         try {
-            this.reader1 = new BufferedReader(new FileReader(dataFile));
+            this.reader1 = new BufferedReader(new InputStreamReader(new FileInputStream(dataFile), "UTF8"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -62,7 +60,7 @@ public class DataReader {
 
     private void initiateWishListReader() {
         try {
-            this.reader2 = new BufferedReader(new FileReader(wishlist));
+            this.reader2 = new BufferedReader(new InputStreamReader(new FileInputStream(wishlist), "UTF8"));
         } catch (IOException e) {
             e.printStackTrace();
         }

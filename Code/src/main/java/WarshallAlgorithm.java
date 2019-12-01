@@ -20,8 +20,4 @@ public class WarshallAlgorithm {
         }
         return result;
     }
-
-    public int[][] getPriceMatrix() {
-        return priceMatrix;
-    }
 }
