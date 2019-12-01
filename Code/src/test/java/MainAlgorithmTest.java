@@ -30,4 +30,12 @@ public class MainAlgorithmTest {
         program.runAlgorithm();
         assertEquals(program.getTime(), 345);
     }
+
+    @Test
+    public void checkPriceForTarnica_smallFileWithOnlyTarnicaOnWishlist() throws IOException {
+        MainAlgorithm program = new MainAlgorithm();
+        program.reader = new DataReader("src\\test\\resources\\Tarnica_small.txt", "ustrzyki_g", "src\\test\\resources\\correctWishlistForTarnica_smallFile" );
+        program.runAlgorithm();
+        assertEquals(program.getPrice(), 10);
+    }
 }

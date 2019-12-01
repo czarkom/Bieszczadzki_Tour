@@ -47,31 +47,19 @@ public class MainAlgorithm {
         timeMatrix = reader.getTimeMatrix();
         priceMatrix = reader.getPriceMatrix();
 
-        /*System.out.println("Macierz czasów:");
-        printMatrix(timeMatrix);
-
-        System.out.println("Macierz kasy przejść pomiędzy wszystkimi punktami:");
-        printMatrix(priceMatrix);*/
         wishlist = reader.getWishArrayList();
         startPlace = reader.getStartPlace();
+        if (wishlist.size() == 1 && wishlist.get(0).equals(startPlace))
+            throw new IllegalArgumentException("Miejsce startowe nie może być jedynym miejscem przez które odbędzie się podróż. " +
+                    "Zweryfikuj listę wybranych miejsc!");
 
         warshallAlgorithm = new WarshallAlgorithm(priceMatrix);
         warshallResult = warshallAlgorithm.findShortestPaths(timeMatrix);
 
-        /*System.out.println("Macierz czasów po Warshallu: ");
-        printMatrix(warshallResult);
 
-        System.out.println("\n\n\nMacierz kasy po Warshallu: ");
-        printMatrix(warshallAlgorithm.getPriceMatrix());
-
-        System.out.println("Lista wybranych miejsc:");
-        System.out.println(reader.getWishArrayList() + "\n");*/
 
         intermediateResult = createMapWithPlacesFromWishlist(warshallResult);
-        /*System.out.println("Macierz po warshallu i zmniejszeniu do rozmiarow listy wybranych miejsc:");
-        printMatrix(intermediateResult);
-        System.out.println("Macierz kasy po zmniejszeniu:");
-        printMatrix(smallerPriceMatrix);*/
+
 
         finalResult = tsp(intermediateResult, findStartPlaceIndexInSmallerMap(smallerMap));
         writeResult();
@@ -146,8 +134,7 @@ public class MainAlgorithm {
             if (i == times.length - 1) {
                 totalTimeInMinutes += times[nextline][startIndex];
             } else totalTimeInMinutes += lowestValue;
-            //System.out.println(visited[i]);
-            //System.out.println(totalTimeInMinutes);
+
             if (i + 1 < times.length) {
                 nextline = visited[i + 1];
             }
