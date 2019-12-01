@@ -30,30 +30,30 @@ public class MainAlgorithm {
         timeMatrix = reader.getTimeMatrix();
         priceMatrix = reader.getPriceMatrix();
 
-        System.out.println("Macierz czasów:");
+        /*System.out.println("Macierz czasów:");
         printMatrix(timeMatrix);
 
         System.out.println("Macierz kasy przejść pomiędzy wszystkimi punktami:");
-        printMatrix(priceMatrix);
+        printMatrix(priceMatrix);*/
         wishlist = reader.getWishArrayList();
         startPlace = reader.getStartPlace();
         warshallAlgorithm = new WarshallAlgorithm(priceMatrix);
         warshallResult = warshallAlgorithm.findShortestPaths(timeMatrix);
 
-        System.out.println("Macierz czasów po Warshallu: ");
+        /*System.out.println("Macierz czasów po Warshallu: ");
         printMatrix(warshallResult);
 
         System.out.println("\n\n\nMacierz kasy po Warshallu: ");
         printMatrix(warshallAlgorithm.getPriceMatrix());
 
         System.out.println("Lista wybranych miejsc:");
-        System.out.println(reader.getWishArrayList() + "\n");
+        System.out.println(reader.getWishArrayList() + "\n");*/
 
         intermediateResult = createMapWithPlacesFromWishlist(warshallResult);
-        System.out.println("Macierz po warshallu i zmniejszeniu do rozmiarow listy wybranych miejsc:");
+        /*System.out.println("Macierz po warshallu i zmniejszeniu do rozmiarow listy wybranych miejsc:");
         printMatrix(intermediateResult);
         System.out.println("Macierz kasy po zmniejszeniu:");
-        printMatrix(smallerPriceMatrix);
+        printMatrix(smallerPriceMatrix);*/
 
         finalResult = tsp(intermediateResult, findStartPlaceIndexInSmallerMap(smallerMap));
         writeResult();
@@ -122,7 +122,6 @@ public class MainAlgorithm {
         for (int i = 0; i < visited.length; i++) visited[i] = Integer.MAX_VALUE;
         visited[0] = startIndex;
         int nextline = startIndex;
-        //smallerMap.get(startIndex).setVisited();
         for (int i = 0; i < times.length; i++) {
             int lowestValue = Integer.MAX_VALUE;
             for (int j = 0; j < times.length; j++) {
@@ -138,8 +137,8 @@ public class MainAlgorithm {
             if (i == times.length - 1) {
                 totalTimeInMinutes += times[nextline][startIndex];
             } else totalTimeInMinutes += lowestValue;
-            System.out.println(visited[i]);
-            System.out.println(totalTimeInMinutes);
+            //System.out.println(visited[i]);
+            //System.out.println(totalTimeInMinutes);
             if (i + 1 < times.length) {
                 nextline = visited[i + 1];
             }

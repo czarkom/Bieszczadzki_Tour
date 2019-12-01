@@ -59,11 +59,13 @@ public class DataReader {
         initiateDataReader();
         advance(reader1);
         if (!currentLine.trim().equals("### Miejsca podróży"))
-            throw new IllegalArgumentException("Pierwsza linia powinna zawierać poprawnie sformatowany tytuł ,,### Miejsca podróży'' ");
+            throw new IllegalArgumentException("Pierwsza linia powinna zawierać poprawnie sformatowany tytuł ,,### Miejsca podróży''.");
         advance(reader1);
         if (!currentLine.trim().equals("Lp. | ID_miejsca | Nazwa miejsca | Opis miejsca |"))
-            throw new IllegalArgumentException("Druga linia powinna zawierać poprawnie sformatowane tytuły sekcji w części z danymi");
+            throw new IllegalArgumentException("Druga linia powinna zawierać poprawnie sformatowane tytuły sekcji w części z danymi.");
         advance(reader1);
+        if (currentLine.equals(""))
+            throw new IllegalArgumentException("Jedyną linijką przerwy powinna być linia pomiędzy danymi miejsc, a czasami przejść.");
 
         while (!currentLine.equals("")) {
             parseLineInDataFilePlaces();
@@ -87,12 +89,12 @@ public class DataReader {
         if (!currentLine.trim().equals("### Czas przejścia"))
             throw new IllegalArgumentException("Pierwsza linia sekcji czasów powinna zawierać poprawnie" +
                     " sformatowany tytuł ,,### Czas przejścia'', pamiętaj o JEDNEJ lini przerwy pomiędzy sekcjami.");
+        advance(reader1);
+        if (!currentLine.trim().equals("Lp. | ID_miejsca_początkowego (S) | ID_miejsca_końcowego (E) | Czas S -> E | Czas E -> S | Jednorazowa opłata za przejście trasą (zł) |"))
+            throw new IllegalArgumentException("Druga linia sekcji czasów powinna zawierać poprawnie" +
+                    " sformatowane nazwy poszczególnych kolumn.");
+        advance(reader1);
         while (this.currentLine != null) {
-            if (currentLine.trim().equals("### Czas przejścia")
-                    || currentLine.trim().equals("Lp. | ID_miejsca_początkowego (S) | ID_miejsca_końcowego (E) | Czas S -> E | Czas E -> S | Jednorazowa opłata za przejście trasą (zł) |")) {
-                advance(reader1);
-                continue;
-            }
             parseLineInDataFileTimes();
             advance(reader1);
         }
@@ -103,10 +105,10 @@ public class DataReader {
         initiateWishListReader();
         lineNumber = 1;
         advance(reader2);
-        if(!currentLine.trim().equals("### Wybrane miejsca podróży"))
+        if (!currentLine.trim().equals("### Wybrane miejsca podróży"))
             throw new IllegalArgumentException("Pierwsza linia pliku z listą wybranych miejsc jest błędnie sformatowana.");
         advance(reader2);
-        if(!currentLine.trim().equals("Lp. | ID_miejsca |"))
+        if (!currentLine.trim().equals("Lp. | ID_miejsca |"))
             throw new IllegalArgumentException("Druga linia pliku z listą wybranych miejsc jest błędnie sformatowana.");
         advance(reader2);
         while (this.currentLine != null) {
@@ -128,15 +130,16 @@ public class DataReader {
         try {
             getData();
             getWishList();
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             System.out.println("Sprawdź czy formatowanie plików jest zgodne ze specyfikacją funkcjonalną!");
         }
     }
 
     private void parseLineInDataFilePlaces() {
-        System.out.println(currentLine);
+        //System.out.println(currentLine);
         if (!currentLine.trim().matches("^[0-9]+\\. \\| [A-z0-9]+ \\| [^|]+ \\| [^|]* \\|$"))
-            throw new IllegalArgumentException("Źle sformatowana linia nr " + (lineNumber + 1) + " w części z nazwami miejsc.");
+            throw new IllegalArgumentException("Źle sformatowana linia nr " + (lineNumber + 1) + " w części z nazwami miejsc.\n" +
+                    "Pamiętaj o JEDNEJ linijce przerwy po zakończeniu sekcji danych miejsc podróży.");
         Place place = new Place();
         String number;
         String[] firstSplit = currentLine.split("\\|");
@@ -211,7 +214,7 @@ public class DataReader {
     }
 
     private void parseLineInWishListFile() {
-        System.out.println(currentLine);
+        //System.out.println(currentLine);
         if (!currentLine.trim().matches("^[0-9]+\\. \\| [A-z0-9]+ \\|$"))
             throw new IllegalArgumentException("Błąd w pliku z wybranymi miejscami w lini nr " + lineNumber);
         String[] firstSplit = currentLine.split("\\|");

@@ -1,9 +1,12 @@
 Okrąglik
 --> Fereczata
+--> Smerek (wieś)
 --> Smerek (szczyt)
 --> Przełęcz M. Orłowicza
 --> Stare Sioło
+--> Jawornik
+--> Zajazd Pod Połoniną
 --> Kopa
 --> Okrąglik
-Czas:32 godzin 45 minut
-Koszt:65 zł
+Czas:37 godzin 45 minut
+Koszt:55 zł
