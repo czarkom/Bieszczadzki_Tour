@@ -1,5 +1,5 @@
 public class WarshallAlgorithm {
-    int[][] priceMatrix;
+    private int[][] priceMatrix;
 
     public WarshallAlgorithm(int[][] matrix) {
         this.priceMatrix = matrix;
@@ -19,5 +19,9 @@ public class WarshallAlgorithm {
             }
         }
         return result;
+    }
+
+    public int[][] getPriceMatrix() {
+        return priceMatrix;
     }
 }

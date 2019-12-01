@@ -4,15 +4,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class MainAlgorithm {
-
     DataReader reader;
-    WarshallAlgorithm warshallAlgorithm;
+    private WarshallAlgorithm warshallAlgorithm;
 
-    ArrayList<String> wishlist;
-    HashMap<Integer, Place> smallerMap = new HashMap<>();
-    int[] finalResult;
-    int[][] warshallResult;
-    private int totalTimeInMinutes = 0;
+    private ArrayList<String> wishlist;
+    private HashMap<Integer, Place> smallerMap = new HashMap<>();
+
+    private int[] finalResult;
+    private int[][] warshallResult;
     private int[][] intermediateResult;
     private int[][] timeMatrix;
     private int[][] priceMatrix;
@@ -21,7 +20,7 @@ public class MainAlgorithm {
     private String startPlace;
 
     private int price = 0;
-
+    private int totalTimeInMinutes = 0;
 
     public static void main(String[] args) throws IOException {
         MainAlgorithm program = new MainAlgorithm();
@@ -39,16 +38,19 @@ public class MainAlgorithm {
 
         wishlist = reader.getWishArrayList();
         startPlace = reader.getStartPlace();
-        if (wishlist.size() == 1 && wishlist.get(0).equals(startPlace))
+
+        if (wishlist.size() == 1 && wishlist.get(0).equals(startPlace)) {
             throw new IllegalArgumentException("Miejsce startowe nie może być jedynym miejscem przez które odbędzie się podróż. " +
                     "Zweryfikuj listę wybranych miejsc!");
+        } else if (wishlist.size() == 1)
+            throw new IllegalArgumentException("Plik z wybranymi miejscami nie zawiera wymaganych danych!");
 
         warshallAlgorithm = new WarshallAlgorithm(priceMatrix);
         warshallResult = warshallAlgorithm.findShortestPaths(timeMatrix);
 
+        priceMatrix = warshallAlgorithm.getPriceMatrix();
 
         intermediateResult = createMapWithPlacesFromWishlist(warshallResult);
-
 
         finalResult = tsp(intermediateResult, findStartPlaceIndexInSmallerMap(smallerMap));
         writeResult();

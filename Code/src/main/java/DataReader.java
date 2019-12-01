@@ -1,4 +1,7 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -90,6 +93,9 @@ public class DataReader {
             parseLineInDataFilePlaces();
             advance(reader1);
         }
+
+        if (placesMap.get(startPlace) == null)
+            throw new IllegalArgumentException("ID miejsca startowego jest nieprawidłowe!");
 
         advance(reader1);
         timeMatrix = new int[placesCounter][placesCounter];
