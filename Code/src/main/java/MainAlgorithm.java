@@ -4,20 +4,23 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class MainAlgorithm {
-    int[] finalResult;
+
     DataReader reader;
     WarshallAlgorithm warshallAlgorithm;
-    int[][] warshallResult;
+
     ArrayList<String> wishlist;
     HashMap<Integer, Place> smallerMap = new HashMap<>();
-    private int[][] intermediateResult;
+    int[] finalResult;
+    int[][] warshallResult;
     private int totalTimeInMinutes = 0;
-
+    private int[][] intermediateResult;
     private int[][] timeMatrix;
     private int[][] priceMatrix;
     private int[][] smallerPriceMatrix;
 
     private String startPlace;
+
+    private int price = 0;
 
 
     public static void main(String[] args) throws IOException {
@@ -76,7 +79,8 @@ public class MainAlgorithm {
 
     public void writeResult() throws IOException {
         DataWriter writer = new DataWriter();
-        writer.writeTofile(finalResult, smallerMap, totalTimeInMinutes, calculateTotalPrice(finalResult));
+        price = calculateTotalPrice(finalResult);
+        writer.writeTofile(finalResult, smallerMap, totalTimeInMinutes, price);
     }
 
     private int calculateTotalPrice(int[] result) {
@@ -166,5 +170,13 @@ public class MainAlgorithm {
             }
         }
         return index;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getTime() {
+        return totalTimeInMinutes;
     }
 }

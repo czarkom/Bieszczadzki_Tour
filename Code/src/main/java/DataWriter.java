@@ -21,6 +21,7 @@ public class DataWriter {
             System.out.println("Czas:" + hours + " godzin " + minutes + " minut.");
             System.out.println("Koszt:" + price + " zł");
             writer.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }

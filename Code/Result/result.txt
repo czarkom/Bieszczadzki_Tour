@@ -1,14 +1,5 @@
-Stare Sioło
---> Jawornik
---> Zajazd Pod Połoniną
---> Rabia Skała
---> Dziurkowiec
---> Fereczata
---> Smerek (wieś)
---> Smerek (szczyt)
---> Przełęcz M. Orłowicza
---> Kopa
---> Krzemień
---> Stare Sioło
-Czas:37 godzin 55 minut
-Koszt:50 zł
+Ustrzyki Górne
+--> Tarnica
+--> Ustrzyki Górne
+Czas:5 godzin 45 minut
+Koszt:10 zł
