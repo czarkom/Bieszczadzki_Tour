@@ -31,6 +31,27 @@ public class DataReader {
         getConfig();
     }
 
+    public DataReader(String file1, String argument) {
+        this.dataFile = file1;
+        this.startPlace = argument;
+        getConfigForNoWishlistCase();
+    }
+
+    private void getWishlistForNoWishlistArgument(){
+        for ( int i = 0; i < timeMatrix.length; i++){
+            wishArrayList.add(placesMapIntegersKeys.get(i).getId());
+        }
+    }
+
+    private void getConfigForNoWishlistCase() {
+        try {
+            getData();
+            getWishlistForNoWishlistArgument();
+        } catch (NullPointerException e) {
+            System.out.println("Sprawdź czy formatowanie plików jest zgodne ze specyfikacją funkcjonalną!");
+        }
+    }
+
     private void initiateDataReader() {
         try {
             this.reader1 = new BufferedReader(new FileReader(dataFile));
@@ -202,6 +223,10 @@ public class DataReader {
 
         System.out.println(aNumericId);
         System.out.println(bNumericId);*/
+
+        if (timeMatrix[aNumericId][bNumericId] != 0)
+            throw new IllegalArgumentException("Błąd w linii nr " + lineNumber
+                    + ". Czas przejścia dla wybranej pary punktów powinien być określony jednokrotnie.");
 
         timeMatrix[aNumericId][bNumericId] = timeFromAToBInMinutes;
         timeMatrix[bNumericId][aNumericId] = timeFromBToAInMinutes;

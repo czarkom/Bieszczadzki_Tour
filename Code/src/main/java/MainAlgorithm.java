@@ -22,7 +22,11 @@ public class MainAlgorithm {
 
     public static void main(String[] args) throws IOException {
         MainAlgorithm program = new MainAlgorithm();
-        program.reader = new DataReader(args[0], args[1], args[2]);
+        if (args.length == 3) program.reader = new DataReader(args[0], args[1], args[2]);
+        else if (args.length == 2) program.reader = new DataReader(args[0], args[1]);
+        else {
+            throw new IllegalArgumentException("Proszę podać odpowiednie pliki jako dane wejściowe dla programu!");
+        }
         program.runAlgorithm();
     }
 
