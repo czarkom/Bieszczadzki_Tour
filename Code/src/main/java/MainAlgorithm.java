@@ -1,6 +1,5 @@
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class MainAlgorithm {
@@ -139,7 +138,7 @@ public class MainAlgorithm {
         }
 
         visited[times.length] = startIndex;
-        System.out.println(Arrays.toString(visited));
+
         return visited;
     }
 
