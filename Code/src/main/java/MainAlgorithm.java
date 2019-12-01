@@ -33,16 +33,6 @@ public class MainAlgorithm {
         program.runAlgorithm();
     }
 
-    public static void printMatrix(int[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix.length; j++) {
-                System.out.print(matrix[i][j] + "\t");
-            }
-            System.out.println();
-        }
-        System.out.println("\n");
-    }
-
     public void runAlgorithm() throws IOException {
         timeMatrix = reader.getTimeMatrix();
         priceMatrix = reader.getPriceMatrix();
@@ -57,7 +47,6 @@ public class MainAlgorithm {
         warshallResult = warshallAlgorithm.findShortestPaths(timeMatrix);
 
 
-
         intermediateResult = createMapWithPlacesFromWishlist(warshallResult);
 
 
@@ -65,7 +54,7 @@ public class MainAlgorithm {
         writeResult();
     }
 
-    public void writeResult() throws IOException {
+    private void writeResult() throws IOException {
         DataWriter writer = new DataWriter();
         price = calculateTotalPrice(finalResult);
         writer.writeTofile(finalResult, smallerMap, totalTimeInMinutes, price);
@@ -73,9 +62,11 @@ public class MainAlgorithm {
 
     private int calculateTotalPrice(int[] result) {
         int total = 0;
+
         for (int i = 0; i < result.length - 2; i++) {
             total += smallerPriceMatrix[i][i + 1];
         }
+
         total += smallerPriceMatrix[result.length - 2][0];
         return total;
     }
@@ -83,9 +74,11 @@ public class MainAlgorithm {
     private boolean isDirectionPlaceOnWishlist(int x) {
         boolean flag = false;
         wishlist = reader.getWishArrayList();
+
         for (int i = 0; i < wishlist.size(); i++) {
             if (wishlist.get(i).equals(reader.getPlacesMapIntegersKeys().get(x).getId())) flag = true;
         }
+
         return flag;
     }
 
@@ -116,9 +109,12 @@ public class MainAlgorithm {
 
     private int[] tsp(int[][] times, int startIndex) {
         int[] visited = new int[times.length + 1];
+
         for (int i = 0; i < visited.length; i++) visited[i] = Integer.MAX_VALUE;
+
         visited[0] = startIndex;
         int nextline = startIndex;
+
         for (int i = 0; i < times.length; i++) {
             int lowestValue = Integer.MAX_VALUE;
             for (int j = 0; j < times.length; j++) {
@@ -139,13 +135,15 @@ public class MainAlgorithm {
                 nextline = visited[i + 1];
             }
         }
+
         visited[times.length] = startIndex;
         System.out.println(Arrays.toString(visited));
         return visited;
     }
 
-    public int findStartPlaceIndexInSmallerMap(HashMap<Integer, Place> map) {
+    private int findStartPlaceIndexInSmallerMap(HashMap<Integer, Place> map) {
         int index = -1;
+
         for (int i = 0; i < intermediateResult.length; i++) {
             try {
                 if (map.get(i).getId().equals(startPlace)) {
@@ -156,6 +154,7 @@ public class MainAlgorithm {
                 throw new IllegalArgumentException("Niepoprawne ID miejsca startowego!");
             }
         }
+
         return index;
     }
 

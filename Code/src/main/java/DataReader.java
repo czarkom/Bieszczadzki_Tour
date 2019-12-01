@@ -157,7 +157,6 @@ public class DataReader {
     }
 
     private void parseLineInDataFilePlaces() {
-        //System.out.println(currentLine);
         if (!currentLine.trim().matches("^[0-9]+\\. \\| [A-z0-9]+ \\| [^|]+ \\| [^|]* \\|$"))
             throw new IllegalArgumentException("Źle sformatowana linia nr " + (lineNumber + 1) + " w części z nazwami miejsc.\n" +
                     "Pamiętaj o JEDNEJ linijce przerwy po zakończeniu sekcji danych miejsc podróży.");
@@ -170,8 +169,6 @@ public class DataReader {
         int placeNumericId = Integer.parseInt(number) - 1;
         if (placesCounter != placeNumericId)
             throw new IllegalArgumentException("Pamiętaj o poprawnej numeracji wierszy! ( linia nr " + (placesCounter + 1) + ")");
-
-        //System.out.println(placeNumericId);
         place.setNumericId(placeNumericId);
         String id = firstSplit[1].trim();
 
@@ -218,12 +215,6 @@ public class DataReader {
         int timeFromAToBInMinutes = hoursAToB * 60 + minutesAToB;
         int timeFromBToAInMinutes = hoursBToA * 60 + minutesBToA;
 
-        /*System.out.println("Time from " + placesMap.get(b).getId() + " to " + placesMap.get(a).getId() + " in minutes: " + timeFromBToAInMinutes);
-        System.out.println("Time from " + placesMap.get(a).getId() + " to " + placesMap.get(b).getId() + " in minutes: " + timeFromAToBInMinutes);
-
-        System.out.println(aNumericId);
-        System.out.println(bNumericId);*/
-
         if (timeMatrix[aNumericId][bNumericId] != 0)
             throw new IllegalArgumentException("Błąd w linii nr " + lineNumber
                     + ". Czas przejścia dla wybranej pary punktów powinien być określony jednokrotnie.");
@@ -239,7 +230,6 @@ public class DataReader {
     }
 
     private void parseLineInWishListFile() {
-        //System.out.println(currentLine);
         if (!currentLine.trim().matches("^[0-9]+\\. \\| [A-z0-9]+ \\|$"))
             throw new IllegalArgumentException("Błąd w pliku z wybranymi miejscami w lini nr " + lineNumber +
                     ". Pamiętaj m. in. o pojedynczych spacjach.");
