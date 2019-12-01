@@ -241,7 +241,8 @@ public class DataReader {
     private void parseLineInWishListFile() {
         //System.out.println(currentLine);
         if (!currentLine.trim().matches("^[0-9]+\\. \\| [A-z0-9]+ \\|$"))
-            throw new IllegalArgumentException("Błąd w pliku z wybranymi miejscami w lini nr " + lineNumber);
+            throw new IllegalArgumentException("Błąd w pliku z wybranymi miejscami w lini nr " + lineNumber +
+                    ". Pamiętaj m. in. o pojedynczych spacjach.");
         String[] firstSplit = currentLine.split("\\|");
         boolean isAlreadyonWishList = false;
         String point = firstSplit[1].trim();
