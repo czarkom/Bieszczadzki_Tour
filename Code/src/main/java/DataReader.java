@@ -24,21 +24,21 @@ public class DataReader {
 
     private ArrayList<String> wishArrayList = new ArrayList<>();
 
-    public DataReader(String file1, String argument, String file2) {
+    public DataReader(String file1, String startPlace, String file2) {
         this.dataFile = file1;
-        this.startPlace = argument;
+        this.startPlace = startPlace;
         this.wishlist = file2;
         getConfig();
     }
 
-    public DataReader(String file1, String argument) {
+    public DataReader(String file1, String startPlace) {
         this.dataFile = file1;
-        this.startPlace = argument;
+        this.startPlace = startPlace;
         getConfigForNoWishlistCase();
     }
 
-    private void getWishlistForNoWishlistArgument(){
-        for ( int i = 0; i < timeMatrix.length; i++){
+    private void getWishlistForNoWishlistArgument() {
+        for (int i = 0; i < timeMatrix.length; i++) {
             wishArrayList.add(placesMapIntegersKeys.get(i).getId());
         }
     }

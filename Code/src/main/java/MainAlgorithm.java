@@ -30,7 +30,7 @@ public class MainAlgorithm {
         program.runAlgorithm();
     }
 
-    public void runAlgorithm() throws IOException {
+    public void runAlgorithm() throws IOException{
         timeMatrix = reader.getTimeMatrix();
         priceMatrix = reader.getPriceMatrix();
 
@@ -41,6 +41,7 @@ public class MainAlgorithm {
         printMatrix(priceMatrix);*/
         wishlist = reader.getWishArrayList();
         startPlace = reader.getStartPlace();
+
         warshallAlgorithm = new WarshallAlgorithm(priceMatrix);
         warshallResult = warshallAlgorithm.findShortestPaths(timeMatrix);
 
@@ -77,7 +78,7 @@ public class MainAlgorithm {
         return total;
     }
 
-    public void printMatrix(int[][] matrix) {
+    public static void printMatrix(int[][] matrix) {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix.length; j++) {
                 System.out.print(matrix[i][j] + "\t");
@@ -155,9 +156,13 @@ public class MainAlgorithm {
     public int findStartPlaceIndexInSmallerMap(HashMap<Integer, Place> map) {
         int index = -1;
         for (int i = 0; i < intermediateResult.length; i++) {
-            if (map.get(i).getId().equals(startPlace)) {
-                index = i;
-                break;
+            try {
+                if (map.get(i).getId().equals(startPlace)) {
+                    index = i;
+                    break;
+                }
+            } catch (NullPointerException e){
+                throw new IllegalArgumentException("Niepoprawne ID miejsca startowego!");
             }
         }
         return index;
