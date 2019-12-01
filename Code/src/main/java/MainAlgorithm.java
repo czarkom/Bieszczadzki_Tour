@@ -30,7 +30,17 @@ public class MainAlgorithm {
         program.runAlgorithm();
     }
 
-    public void runAlgorithm() throws IOException{
+    public static void printMatrix(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                System.out.print(matrix[i][j] + "\t");
+            }
+            System.out.println();
+        }
+        System.out.println("\n");
+    }
+
+    public void runAlgorithm() throws IOException {
         timeMatrix = reader.getTimeMatrix();
         priceMatrix = reader.getPriceMatrix();
 
@@ -76,16 +86,6 @@ public class MainAlgorithm {
         }
         total += smallerPriceMatrix[result.length - 2][0];
         return total;
-    }
-
-    public static void printMatrix(int[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix.length; j++) {
-                System.out.print(matrix[i][j] + "\t");
-            }
-            System.out.println();
-        }
-        System.out.println("\n");
     }
 
     private boolean isDirectionPlaceOnWishlist(int x) {
@@ -161,7 +161,7 @@ public class MainAlgorithm {
                     index = i;
                     break;
                 }
-            } catch (NullPointerException e){
+            } catch (NullPointerException e) {
                 throw new IllegalArgumentException("Niepoprawne ID miejsca startowego!");
             }
         }

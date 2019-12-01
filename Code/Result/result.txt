@@ -3,10 +3,36 @@ Okrąglik
 --> Smerek (wieś)
 --> Smerek (szczyt)
 --> Przełęcz M. Orłowicza
+--> Hnatowe Berdo
+--> Osadzki Wierch
+--> Roh
+--> PTTK Chatka Puchatka
+--> Połonina Caryńska (początek:lewa)
+--> Połonina Caryńska (środek)
+--> Połonina Caryńska (koniec:prawa)
+--> Przysłup Caryński
+--> Bereżki
+--> Widełki
+--> Kopa
+--> Widełki
+--> Krzemień
+--> Przełęcz Krygowskiego
+--> Tarncia
+--> Hudów Wierszek
+--> Wołosate
+--> PTTK Kremenaros
+--> Kopa Bukowska
+--> Halicz
+--> Rozsypaniec
+--> Przełęcz Bukowska
+--> Muczne
 --> Stare Sioło
 --> Jawornik
 --> Zajazd Pod Połoniną
---> Kopa
+--> Paprotna
+--> Rabia Skała
+--> Dziurkowiec
+--> Płasza
 --> Okrąglik
-Czas:37 godzin 45 minut
-Koszt:55 zł
+Czas:55 godzin 0 minut
+Koszt:80 zł
