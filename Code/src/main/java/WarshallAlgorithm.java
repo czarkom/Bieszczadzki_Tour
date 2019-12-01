@@ -1,5 +1,5 @@
 public class WarshallAlgorithm {
-    int[][] priceMatrix;
+    private int[][] priceMatrix;
 
     public WarshallAlgorithm(int[][] matrix) {
         this.priceMatrix = matrix;

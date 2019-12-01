@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -54,7 +55,7 @@ public class DataReader {
 
     private void initiateDataReader() {
         try {
-            this.reader1 = new BufferedReader(new FileReader(dataFile));
+            this.reader1 = new BufferedReader(new InputStreamReader(new FileInputStream(dataFile), "UTF8"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -62,7 +63,7 @@ public class DataReader {
 
     private void initiateWishListReader() {
         try {
-            this.reader2 = new BufferedReader(new FileReader(wishlist));
+            this.reader2 = new BufferedReader(new InputStreamReader(new FileInputStream(wishlist), "UTF8"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -92,6 +93,9 @@ public class DataReader {
             parseLineInDataFilePlaces();
             advance(reader1);
         }
+
+        if (placesMap.get(startPlace) == null)
+            throw new IllegalArgumentException("ID miejsca startowego jest nieprawidłowe!");
 
         advance(reader1);
         timeMatrix = new int[placesCounter][placesCounter];
@@ -157,7 +161,6 @@ public class DataReader {
     }
 
     private void parseLineInDataFilePlaces() {
-        //System.out.println(currentLine);
         if (!currentLine.trim().matches("^[0-9]+\\. \\| [A-z0-9]+ \\| [^|]+ \\| [^|]* \\|$"))
             throw new IllegalArgumentException("Źle sformatowana linia nr " + (lineNumber + 1) + " w części z nazwami miejsc.\n" +
                     "Pamiętaj o JEDNEJ linijce przerwy po zakończeniu sekcji danych miejsc podróży.");
@@ -170,8 +173,6 @@ public class DataReader {
         int placeNumericId = Integer.parseInt(number) - 1;
         if (placesCounter != placeNumericId)
             throw new IllegalArgumentException("Pamiętaj o poprawnej numeracji wierszy! ( linia nr " + (placesCounter + 1) + ")");
-
-        //System.out.println(placeNumericId);
         place.setNumericId(placeNumericId);
         String id = firstSplit[1].trim();
 
@@ -218,12 +219,6 @@ public class DataReader {
         int timeFromAToBInMinutes = hoursAToB * 60 + minutesAToB;
         int timeFromBToAInMinutes = hoursBToA * 60 + minutesBToA;
 
-        /*System.out.println("Time from " + placesMap.get(b).getId() + " to " + placesMap.get(a).getId() + " in minutes: " + timeFromBToAInMinutes);
-        System.out.println("Time from " + placesMap.get(a).getId() + " to " + placesMap.get(b).getId() + " in minutes: " + timeFromAToBInMinutes);
-
-        System.out.println(aNumericId);
-        System.out.println(bNumericId);*/
-
         if (timeMatrix[aNumericId][bNumericId] != 0)
             throw new IllegalArgumentException("Błąd w linii nr " + lineNumber
                     + ". Czas przejścia dla wybranej pary punktów powinien być określony jednokrotnie.");
@@ -239,9 +234,9 @@ public class DataReader {
     }
 
     private void parseLineInWishListFile() {
-        //System.out.println(currentLine);
         if (!currentLine.trim().matches("^[0-9]+\\. \\| [A-z0-9]+ \\|$"))
-            throw new IllegalArgumentException("Błąd w pliku z wybranymi miejscami w lini nr " + lineNumber);
+            throw new IllegalArgumentException("Błąd w pliku z wybranymi miejscami w lini nr " + lineNumber +
+                    ". Pamiętaj m. in. o pojedynczych spacjach.");
         String[] firstSplit = currentLine.split("\\|");
         boolean isAlreadyonWishList = false;
         String point = firstSplit[1].trim();

@@ -1,24 +1,25 @@
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class MainAlgorithm {
-    int[] finalResult;
     DataReader reader;
-    WarshallAlgorithm warshallAlgorithm;
-    int[][] warshallResult;
-    ArrayList<String> wishlist;
-    HashMap<Integer, Place> smallerMap = new HashMap<>();
-    private int[][] intermediateResult;
-    private int totalTimeInMinutes = 0;
+    private WarshallAlgorithm warshallAlgorithm;
 
+    private ArrayList<String> wishlist;
+    private HashMap<Integer, Place> smallerMap = new HashMap<>();
+
+    private int[] finalResult;
+    private int[][] warshallResult;
+    private int[][] intermediateResult;
     private int[][] timeMatrix;
     private int[][] priceMatrix;
     private int[][] smallerPriceMatrix;
 
     private String startPlace;
 
+    private int price = 0;
+    private int totalTimeInMinutes = 0;
 
     public static void main(String[] args) throws IOException {
         MainAlgorithm program = new MainAlgorithm();
@@ -30,60 +31,43 @@ public class MainAlgorithm {
         program.runAlgorithm();
     }
 
-    public static void printMatrix(int[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix.length; j++) {
-                System.out.print(matrix[i][j] + "\t");
-            }
-            System.out.println();
-        }
-        System.out.println("\n");
-    }
-
     public void runAlgorithm() throws IOException {
         timeMatrix = reader.getTimeMatrix();
         priceMatrix = reader.getPriceMatrix();
 
-        /*System.out.println("Macierz czasów:");
-        printMatrix(timeMatrix);
-
-        System.out.println("Macierz kasy przejść pomiędzy wszystkimi punktami:");
-        printMatrix(priceMatrix);*/
         wishlist = reader.getWishArrayList();
         startPlace = reader.getStartPlace();
+
+        if (wishlist.size() == 1 && wishlist.get(0).equals(startPlace)) {
+            throw new IllegalArgumentException("Miejsce startowe nie może być jedynym miejscem przez które odbędzie się podróż. " +
+                    "Zweryfikuj listę wybranych miejsc!");
+        } else if (wishlist.size() == 1)
+            throw new IllegalArgumentException("Plik z wybranymi miejscami nie zawiera wymaganych danych!");
 
         warshallAlgorithm = new WarshallAlgorithm(priceMatrix);
         warshallResult = warshallAlgorithm.findShortestPaths(timeMatrix);
 
-        /*System.out.println("Macierz czasów po Warshallu: ");
-        printMatrix(warshallResult);
-
-        System.out.println("\n\n\nMacierz kasy po Warshallu: ");
-        printMatrix(warshallAlgorithm.getPriceMatrix());
-
-        System.out.println("Lista wybranych miejsc:");
-        System.out.println(reader.getWishArrayList() + "\n");*/
+        priceMatrix = warshallAlgorithm.getPriceMatrix();
 
         intermediateResult = createMapWithPlacesFromWishlist(warshallResult);
-        /*System.out.println("Macierz po warshallu i zmniejszeniu do rozmiarow listy wybranych miejsc:");
-        printMatrix(intermediateResult);
-        System.out.println("Macierz kasy po zmniejszeniu:");
-        printMatrix(smallerPriceMatrix);*/
 
         finalResult = tsp(intermediateResult, findStartPlaceIndexInSmallerMap(smallerMap));
         writeResult();
     }
 
-    public void writeResult() throws IOException {
+    private void writeResult() throws IOException {
         DataWriter writer = new DataWriter();
-        writer.writeTofile(finalResult, smallerMap, totalTimeInMinutes, calculateTotalPrice(finalResult));
+        price = calculateTotalPrice(finalResult);
+        writer.writeTofile(finalResult, smallerMap, totalTimeInMinutes, price);
     }
 
     private int calculateTotalPrice(int[] result) {
         int total = 0;
+
         for (int i = 0; i < result.length - 2; i++) {
             total += smallerPriceMatrix[i][i + 1];
         }
+
         total += smallerPriceMatrix[result.length - 2][0];
         return total;
     }
@@ -91,9 +75,11 @@ public class MainAlgorithm {
     private boolean isDirectionPlaceOnWishlist(int x) {
         boolean flag = false;
         wishlist = reader.getWishArrayList();
+
         for (int i = 0; i < wishlist.size(); i++) {
             if (wishlist.get(i).equals(reader.getPlacesMapIntegersKeys().get(x).getId())) flag = true;
         }
+
         return flag;
     }
 
@@ -124,9 +110,12 @@ public class MainAlgorithm {
 
     private int[] tsp(int[][] times, int startIndex) {
         int[] visited = new int[times.length + 1];
+
         for (int i = 0; i < visited.length; i++) visited[i] = Integer.MAX_VALUE;
+
         visited[0] = startIndex;
         int nextline = startIndex;
+
         for (int i = 0; i < times.length; i++) {
             int lowestValue = Integer.MAX_VALUE;
             for (int j = 0; j < times.length; j++) {
@@ -142,19 +131,20 @@ public class MainAlgorithm {
             if (i == times.length - 1) {
                 totalTimeInMinutes += times[nextline][startIndex];
             } else totalTimeInMinutes += lowestValue;
-            //System.out.println(visited[i]);
-            //System.out.println(totalTimeInMinutes);
+
             if (i + 1 < times.length) {
                 nextline = visited[i + 1];
             }
         }
+
         visited[times.length] = startIndex;
-        System.out.println(Arrays.toString(visited));
+
         return visited;
     }
 
-    public int findStartPlaceIndexInSmallerMap(HashMap<Integer, Place> map) {
+    private int findStartPlaceIndexInSmallerMap(HashMap<Integer, Place> map) {
         int index = -1;
+
         for (int i = 0; i < intermediateResult.length; i++) {
             try {
                 if (map.get(i).getId().equals(startPlace)) {
@@ -165,6 +155,15 @@ public class MainAlgorithm {
                 throw new IllegalArgumentException("Niepoprawne ID miejsca startowego!");
             }
         }
+
         return index;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getTime() {
+        return totalTimeInMinutes;
     }
 }

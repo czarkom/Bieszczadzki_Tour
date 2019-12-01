@@ -4,7 +4,7 @@ Lp. | ID_miejsca | Nazwa miejsca | Opis miejsca |
 2. | B | Przełęcz M. Orłowicza | Szczyt 1093 |
 3. | C | Smerek (szczyt) | Szczyt 1222 |
 4. | D | Smerek (wieś) |  |
-5. | E | Fereczata | Szczyt 1102 |
+40. | E | Fereczata | Szczyt 1102 |
 6. | F | Okrąglik | Szczyt 1101 |
 7. | G | Płasza | Szczyt 1163 |
 8. | H | Dziurkowiec | Szczyt 1189 |
@@ -41,7 +41,7 @@ Lp. | ID_miejsca_początkowego (S) | ID_miejsca_końcowego (E) | Czas S -> E | C
 1. | A | B | 2:15 | 2:00 | 5 |
 2. | B | C | 0:20 | 0:15 | -- |
 3. | B | M | 1:15 | 1:30 | -- |
-4. | C | D | 2:00 | 2:30 | 15 |
+4. | C | D | 2:00 | 2:30 | 5 |
 5. | D | E | 2:20 | 1:45 | -- |
 6. | E | F | 0:40 | 0:50 | -- |
 7. | F | G | 2:15 | 2:00 | -- |
