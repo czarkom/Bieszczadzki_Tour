@@ -1,14 +1,7 @@
-Krzemień
---> Kopa
---> Przełęcz M. Orłowicza
---> Smerek (szczyt)
---> Smerek (wieś)
---> Fereczata
---> Dziurkowiec
---> Rabia Skała
---> Jawornik
---> Zajazd Pod Połoniną
---> Stare Sioło
---> Krzemień
-Czas:39 godzin 10 minut
-Koszt:50 zł
+Ustrzyki Górne
+--> Wołosate
+--> Przełęcz Krygowskiego
+--> Tarnica
+--> Ustrzyki Górne
+Czas:6 godzin 15 minut
+Koszt:10 zł
