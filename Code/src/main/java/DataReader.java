@@ -181,8 +181,7 @@ public class DataReader {
         String name = firstSplit[2].trim();
 
         place.setName(name);
-        String description = firstSplit[3].trim();
-        place.setTypeOfPlace(description);
+
         if (placesMap.get(id) != null)
             throw new IllegalArgumentException("Nie może wystąpić dwa razy to samo id! Sprawdź linię nr " + (lineNumber + 1));
         placesMap.put(id, place);
@@ -215,6 +214,9 @@ public class DataReader {
         String[] hoursAndMinutesFromBtoA = timeFromBToA.split(":");
         int hoursBToA = Integer.parseInt(hoursAndMinutesFromBtoA[0].trim());
         int minutesBToA = Integer.parseInt(hoursAndMinutesFromBtoA[1].trim());
+
+        if (minutesAToB > 59 || minutesBToA > 60)
+            throw new IllegalArgumentException("Liczba minut nie może przekroczyć 59! Sprawdź linię nr " + lineNumber);
 
         int timeFromAToBInMinutes = hoursAToB * 60 + minutesAToB;
         int timeFromBToAInMinutes = hoursBToA * 60 + minutesBToA;

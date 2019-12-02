@@ -65,10 +65,10 @@ public class MainAlgorithm {
         int total = 0;
 
         for (int i = 0; i < result.length - 2; i++) {
-            total += smallerPriceMatrix[i][i + 1];
+            total += smallerPriceMatrix[result[i]][result[i + 1]];
         }
 
-        total += smallerPriceMatrix[result.length - 2][0];
+        total += smallerPriceMatrix[result[result.length - 2]][result[0]];
         return total;
     }
 

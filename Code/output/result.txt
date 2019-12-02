@@ -1,14 +1,38 @@
-Zajazd Pod Połoniną
---> Jawornik
---> Stare Sioło
+Smerek (szczyt)
 --> Przełęcz M. Orłowicza
---> Smerek (szczyt)
---> Smerek (wieś)
---> Fereczata
---> Dziurkowiec
---> Rabia Skała
+--> Hnatowe Berdo
+--> Osadzki Wierch
+--> Roh
+--> PTTK Chatka Puchatka
+--> Połonina Caryńska (początek:lewa)
+--> Połonina Caryńska (środek)
+--> Połonina Caryńska (koniec:prawa)
+--> Przysłup Caryński
+--> Bereżki
+--> Widełki
 --> Kopa
+--> Widełki
 --> Krzemień
+--> Przełęcz Krygowskiego
+--> Tarncia
+--> Hudów Wierszek
+--> Wołosate
+--> PTTK Kremenaros
+--> Kopa Bukowska
+--> Halicz
+--> Rozsypaniec
+--> Przełęcz Bukowska
+--> Muczne
+--> Stare Sioło
+--> Jawornik
 --> Zajazd Pod Połoniną
-Czas:44 godzin 25 minut
+--> Paprotna
+--> Rabia Skała
+--> Dziurkowiec
+--> Płasza
+--> Okrąglik
+--> Fereczata
+--> Smerek (wieś)
+--> Smerek (szczyt)
+Czas:55 godzin 0 minut
 Koszt:50 zł

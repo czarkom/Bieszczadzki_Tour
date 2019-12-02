@@ -1,12 +1,7 @@
 public class Place {
     private String name;
     private String id;
-    private String typeOfPlace;
     private int numericId;
-
-    public void setTypeOfPlace(String typeOfPlace) {
-        this.typeOfPlace = typeOfPlace;
-    }
 
     public String getId() {
         return id;
