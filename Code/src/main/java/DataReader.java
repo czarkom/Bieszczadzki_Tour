@@ -80,6 +80,7 @@ public class DataReader {
     private void getData() {
         initiateDataReader();
         advance(reader1);
+
         if (!currentLine.trim().equals("### Miejsca podróży"))
             throw new IllegalArgumentException("Pierwsza linia powinna zawierać poprawnie sformatowany tytuł ,,### Miejsca podróży''.");
         advance(reader1);
@@ -102,6 +103,7 @@ public class DataReader {
         priceMatrix = new int[placesCounter][placesCounter];
         lineNumber = 1;
         getTimes();
+
         for (int i = 0; i < timeMatrix.length; i++) {
             for (int j = 0; j < timeMatrix.length; j++) {
                 if (timeMatrix[i][j] == 0) timeMatrix[i][j] = INFINITE_DISTANCE;
@@ -115,10 +117,12 @@ public class DataReader {
             throw new IllegalArgumentException("Pierwsza linia sekcji czasów powinna zawierać poprawnie" +
                     " sformatowany tytuł ,,### Czas przejścia'', pamiętaj o JEDNEJ lini przerwy pomiędzy sekcjami.");
         advance(reader1);
+
         if (!currentLine.trim().equals("Lp. | ID_miejsca_początkowego (S) | ID_miejsca_końcowego (E) | Czas S -> E | Czas E -> S | Jednorazowa opłata za przejście trasą (zł) |"))
             throw new IllegalArgumentException("Druga linia sekcji czasów powinna zawierać poprawnie" +
                     " sformatowane nazwy poszczególnych kolumn.");
         advance(reader1);
+
         while (this.currentLine != null) {
             parseLineInDataFileTimes();
             advance(reader1);
@@ -130,12 +134,14 @@ public class DataReader {
         initiateWishListReader();
         lineNumber = 1;
         advance(reader2);
+
         if (!currentLine.trim().equals("### Wybrane miejsca podróży"))
             throw new IllegalArgumentException("Pierwsza linia pliku z listą wybranych miejsc jest błędnie sformatowana.");
         advance(reader2);
         if (!currentLine.trim().equals("Lp. | ID_miejsca |"))
             throw new IllegalArgumentException("Druga linia pliku z listą wybranych miejsc jest błędnie sformatowana.");
         advance(reader2);
+
         while (this.currentLine != null) {
             if (currentLine.equals("")) {
                 advance(reader2);
@@ -145,9 +151,11 @@ public class DataReader {
             parseLineInWishListFile();
             advance(reader2);
         }
+
         for (int i = 0; i < wishArrayList.size(); i++) {
             if (startPlace.equals(wishArrayList.get(i))) isAlreadyonWishList = true;
         }
+
         if (!isAlreadyonWishList) wishArrayList.add(startPlace);
     }
 
@@ -164,29 +172,33 @@ public class DataReader {
         if (!currentLine.trim().matches("^[0-9]+\\. \\| [A-z0-9]+ \\| [^|]+ \\| [^|]* \\|$"))
             throw new IllegalArgumentException("Źle sformatowana linia nr " + (lineNumber + 1) + " w części z nazwami miejsc.\n" +
                     "Pamiętaj o JEDNEJ linijce przerwy po zakończeniu sekcji danych miejsc podróży.");
+
         Place place = new Place();
+
         String number;
         String[] firstSplit = currentLine.split("\\|");
         String firstPart = firstSplit[0];
         String[] numerousPart = firstPart.split("\\.");
+
         number = numerousPart[0].trim();
         int placeNumericId = Integer.parseInt(number) - 1;
+
         if (placesCounter != placeNumericId)
             throw new IllegalArgumentException("Pamiętaj o poprawnej numeracji wierszy! ( linia nr " + (placesCounter + 1) + ")");
+
         place.setNumericId(placeNumericId);
         String id = firstSplit[1].trim();
-
-
         place.setId(id);
         String name = firstSplit[2].trim();
-
         place.setName(name);
 
         if (placesMap.get(id) != null)
             throw new IllegalArgumentException("Nie może wystąpić dwa razy to samo id! Sprawdź linię nr " + (lineNumber + 1));
+
         placesMap.put(id, place);
         placesMapIntegersKeys.put(placeNumericId, place);
         placesCounter++;
+
         lineNumber++;
 
     }
@@ -194,6 +206,7 @@ public class DataReader {
     private void parseLineInDataFileTimes() {
         if (!currentLine.trim().matches("^[0-9]+\\. \\| [A-z0-9]+ \\| [A-z0-9]+ \\| \\d+:\\d{2} \\| \\d+:\\d{2} \\| (\\d+|--) \\|$"))
             throw new IllegalArgumentException("Żle sformatowana linia nr " + lineNumber + " w części z czasami przejść.");
+
         String[] firstSplit = currentLine.split("\\|");
         String a = firstSplit[1].trim();
         String b = firstSplit[2].trim();
@@ -215,8 +228,9 @@ public class DataReader {
         int hoursBToA = Integer.parseInt(hoursAndMinutesFromBtoA[0].trim());
         int minutesBToA = Integer.parseInt(hoursAndMinutesFromBtoA[1].trim());
 
-        if (minutesAToB > 59 || minutesBToA > 60)
-            throw new IllegalArgumentException("Liczba minut nie może przekroczyć 59! Sprawdź linię nr " + lineNumber);
+        if (minutesAToB > 59 || minutesBToA > 59)
+            throw new IllegalArgumentException("Liczba minut nie może przekroczyć 59! Sprawdź linię nr " + lineNumber
+                    + " w części z czasami." );
 
         int timeFromAToBInMinutes = hoursAToB * 60 + minutesAToB;
         int timeFromBToAInMinutes = hoursBToA * 60 + minutesBToA;
@@ -239,15 +253,20 @@ public class DataReader {
         if (!currentLine.trim().matches("^[0-9]+\\. \\| [A-z0-9]+ \\|$"))
             throw new IllegalArgumentException("Błąd w pliku z wybranymi miejscami w lini nr " + lineNumber +
                     ". Pamiętaj m. in. o pojedynczych spacjach.");
+
         String[] firstSplit = currentLine.split("\\|");
         boolean isAlreadyonWishList = false;
         String point = firstSplit[1].trim();
+
         if (placesMap.get(point) == null)
             throw new IllegalArgumentException("Miejsce o wybranym ID nie istnieje w pliku z danymi (linia nr " + lineNumber + ")");
+
         for (int i = 0; i < wishArrayList.size(); i++) {
             if (point.equals(wishArrayList.get(i))) isAlreadyonWishList = true;
         }
+
         if (!isAlreadyonWishList) wishArrayList.add(point);
+
         lineNumber++;
     }
 

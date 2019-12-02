@@ -1,4 +1,14 @@
-Smerek (szczyt)
+Stare Sioło
+--> Jawornik
+--> Zajazd Pod Połoniną
+--> Paprotna
+--> Rabia Skała
+--> Dziurkowiec
+--> Płasza
+--> Okrąglik
+--> Fereczata
+--> Smerek (wieś)
+--> Smerek (szczyt)
 --> Przełęcz M. Orłowicza
 --> Hnatowe Berdo
 --> Osadzki Wierch
@@ -24,15 +34,5 @@ Smerek (szczyt)
 --> Przełęcz Bukowska
 --> Muczne
 --> Stare Sioło
---> Jawornik
---> Zajazd Pod Połoniną
---> Paprotna
---> Rabia Skała
---> Dziurkowiec
---> Płasza
---> Okrąglik
---> Fereczata
---> Smerek (wieś)
---> Smerek (szczyt)
-Czas:55 godzin 0 minut
-Koszt:50 zł
+Czas: 55 godzin 0 minut
+Koszt: 50 zł

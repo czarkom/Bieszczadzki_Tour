@@ -16,8 +16,8 @@ public class DataWriter {
             }
             int hours = totalTime / 60;
             int minutes = totalTime % 60;
-            writer.write("Czas:" + hours + " godzin " + minutes + " minut\n");
-            writer.write("Koszt:" + price + " zł");
+            writer.write("Czas: " + hours + " godzin " + minutes + " minut\n");
+            writer.write("Koszt: " + price + " zł");
             writer.close();
 
         } catch (IOException e) {
